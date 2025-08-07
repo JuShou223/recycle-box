@@ -3,7 +3,6 @@ import { useDidShow, useDidHide } from '@tarojs/taro'
 import { applyTheme, getCurrentTheme } from './styles/themes'
 // 全局样式
 import './app.scss'
-import './styles/variables.scss'
 
 function App(props) {
   // 可以使用所有的 React Hooks

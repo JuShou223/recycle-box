@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
 import { View, Text } from '@tarojs/components'
-import Card from '../../components/Card'
 import Button from '../../components/Button'
 import Tabs, { TabPane } from '../../components/Tabs'
 import Progress from '../../components/Progress'
 import Tag from '../../components/Tag'
 import Taro from '@tarojs/taro'
-import './index.scss'
 
 function Points() {
   const [activeTab, setActiveTab] = useState('0')
@@ -121,65 +119,66 @@ function Points() {
   const levelProgress = ((userPoints.total - (userPoints.level - 1) * 500) / 500) * 100
 
   return (
-    <View className='points-page'>
+    <View className="min-h-screen bg-gray-50">
       {/* 积分概览 */}
-      <Card className='points-overview'>
-        <View className='points-header'>
-          <View className='points-main'>
-            <Text className='points-number'>{userPoints.total}</Text>
-            <Text className='points-label'>总积分</Text>
+      <View className="m-5 rounded-2xl bg-gradient-to-br from-green-500 to-green-600 text-white p-5">
+        <View className="flex justify-between items-start mb-5">
+          <View>
+            <Text className="text-4xl font-bold text-white block leading-none">{userPoints.total}</Text>
+            <Text className="text-sm text-green-100">总积分</Text>
           </View>
-          <View className='level-info'>
-            <Text className='level-text'>Lv.{userPoints.level}</Text>
+          <View className="text-right flex-1 ml-5">
+            <Text className="text-base font-bold text-white block mb-2">Lv.{userPoints.level}</Text>
             <Progress 
               percentage={levelProgress}
               strokeWidth={6}
               strokeColor='#52c41a'
-              className='level-progress'
+              className="mb-1"
             />
-            <Text className='next-level'>
+            <Text className="text-xs text-green-100">
               距离Lv.{userPoints.level + 1}还需{userPoints.nextLevelPoints - userPoints.total}积分
             </Text>
           </View>
         </View>
         
-        <View className='points-stats'>
-          <View className='stat-item'>
-            <Text className='stat-number'>{userPoints.available}</Text>
-            <Text className='stat-label'>可用积分</Text>
+        <View className="flex justify-between items-center">
+          <View className="text-center">
+            <Text className="text-lg font-bold text-white block mb-1">{userPoints.available}</Text>
+            <Text className="text-xs text-green-100">可用积分</Text>
           </View>
-          <View className='stat-item'>
-            <Text className='stat-number'>{userPoints.frozen}</Text>
-            <Text className='stat-label'>冻结积分</Text>
+          <View className="text-center">
+            <Text className="text-lg font-bold text-white block mb-1">{userPoints.frozen}</Text>
+            <Text className="text-xs text-green-100">冻结积分</Text>
           </View>
-          <View className='stat-item'>
+          <View className="text-center">
             <Button 
               size='small' 
-              type='primary'
+              className="bg-white text-green-600 px-3 py-1 rounded-full text-xs font-medium"
               onClick={handleViewRanking}
             >
               查看排行
             </Button>
           </View>
         </View>
-      </Card>
+      </View>
 
       {/* 标签页 */}
-      <Tabs value={activeTab} onChange={setActiveTab} className='points-tabs'>
+      <View className="mx-5">
+      <Tabs value={activeTab} onChange={setActiveTab}>
         <TabPane title='积分记录'>
-          <View className='points-history'>
+          <View>
             {pointsHistory.map((record) => (
-              <View key={record.id} className='history-item'>
-                <View className='history-info'>
-                  <Text className='history-reason'>{record.reason}</Text>
-                  <Text className='history-time'>{record.time}</Text>
+              <View key={record.id} className="bg-white rounded-lg p-4 mb-3 flex justify-between items-center">
+                <View className="flex-1">
+                  <Text className="text-sm font-bold text-gray-800 block mb-1">{record.reason}</Text>
+                  <Text className="text-xs text-gray-600 block mb-0.5">{record.time}</Text>
                   {record.weight && (
-                    <Text className='history-weight'>重量: {record.weight}</Text>
+                    <Text className="text-xs text-gray-500">重量: {record.weight}</Text>
                   )}
                 </View>
-                <View className='history-points'>
+                <View className="text-right">
                   <Text 
-                    className={`points-change ${record.type === 'earn' ? 'earn' : 'spend'}`}
+                    className={`text-base font-bold block mb-1 ${record.type === 'earn' ? 'text-green-600' : 'text-red-500'}`}
                   >
                     {record.type === 'earn' ? '+' : ''}{record.amount}
                   </Text>
@@ -196,23 +195,23 @@ function Points() {
         </TabPane>
         
         <TabPane title='积分兑换'>
-          <View className='exchange-grid'>
+          <View className="grid grid-cols-2 gap-3">
             {exchangeItems.map((item) => (
-              <View key={item.id} className='exchange-item'>
+              <View key={item.id} className="bg-white rounded-lg overflow-hidden">
                 <View 
-                  className='item-image'
+                  className="w-full h-30 bg-cover bg-center bg-gray-200"
                   style={{ backgroundImage: `url(${item.image})` }}
                 />
-                <View className='item-info'>
-                  <Text className='item-name'>{item.name}</Text>
-                  <Text className='item-points'>{item.points}积分</Text>
-                  <Text className='item-stock'>库存: {item.stock}</Text>
+                <View className="p-3">
+                  <Text className="text-xs font-bold text-gray-800 block mb-1 leading-tight">{item.name}</Text>
+                  <Text className="text-sm text-green-600 font-bold block mb-0.5">{item.points}积分</Text>
+                  <Text className="text-xs text-gray-600 block mb-2">库存: {item.stock}</Text>
                   <Button 
                     size='small'
                     type={userPoints.available >= item.points ? 'primary' : 'default'}
                     disabled={userPoints.available < item.points || item.stock === 0}
                     onClick={() => handleExchange(item)}
-                    className='exchange-btn'
+                    className="w-full h-8 text-xs"
                   >
                     {userPoints.available >= item.points ? '立即兑换' : '积分不足'}
                   </Button>
@@ -222,6 +221,7 @@ function Points() {
           </View>
         </TabPane>
       </Tabs>
+      </View>
     </View>
   )
 }

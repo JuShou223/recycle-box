@@ -1,0 +1,52 @@
+/* Tailwind CSS 输入文件 */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 自定义组件样式 */
+@layer components {
+  .btn-primary {
+    @apply bg-theme-primary text-white px-4 py-2 rounded-lg font-medium transition-colors;
+  }
+  
+  .btn-primary:hover {
+    @apply bg-theme-primary-light;
+  }
+  
+  .card {
+    @apply bg-theme-bg-light rounded-xl p-4 shadow-card;
+  }
+  
+  .text-primary {
+    @apply text-theme-text;
+  }
+  
+  .text-secondary {
+    @apply text-theme-text-secondary;
+  }
+  
+  .text-tertiary {
+    @apply text-theme-text-tertiary;
+  }
+}
+
+/* 小程序兼容性样式 */
+@layer utilities {
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  /* 修复小程序中的一些样式问题 */
+  .flex-fix {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .grid-fix {
+    display: grid;
+  }
+}

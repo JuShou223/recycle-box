@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
 import { View, Text } from '@tarojs/components'
-import Card from '../../components/Card'
 import Button from '../../components/Button'
 import Avatar from '../../components/Avatar'
 import Cell, { CellGroup } from '../../components/Cell'
 import Switch from '../../components/Switch'
 import Taro from '@tarojs/taro'
 import ThemeSelector from '../../components/ThemeSelector'
-import './index.scss'
 
 function Profile() {
   const [userInfo] = useState({
@@ -95,68 +93,68 @@ function Profile() {
   }
 
   return (
-    <View className='profile-page'>
+    <View className="min-h-screen bg-gray-50">
       {/* 用户信息卡片 */}
-      <Card className='user-info-card'>
-        <View className='user-header'>
+      <View className="m-5 rounded-2xl bg-white p-5 shadow-sm">
+        <View className="flex items-center mb-5">
           <Avatar 
             size="large" 
             src={userInfo.avatar}
-            className='user-avatar'
+            className="mr-4"
           />
-          <View className='user-details'>
-            <Text className='username'>{userInfo.nickname}</Text>
-            <Text className='user-phone'>{userInfo.phone}</Text>
-            <Text className='join-date'>加入时间: {userInfo.joinDate}</Text>
+          <View className="flex-1">
+            <Text className="text-xl font-bold text-gray-800 block mb-1">{userInfo.nickname}</Text>
+            <Text className="text-sm text-gray-600 block mb-0.5">{userInfo.phone}</Text>
+            <Text className="text-xs text-gray-500">加入时间: {userInfo.joinDate}</Text>
           </View>
           <Button 
             size='small'
-            type='primary'
+            className="bg-green-500 text-white px-3 py-1 rounded-full text-xs"
             onClick={handleEditProfile}
           >
             编辑
           </Button>
         </View>
         
-        <View className='user-stats'>
-          <View className='stat-item'>
-            <Text className='stat-number'>{userInfo.points}</Text>
-            <Text className='stat-label'>总积分</Text>
+        <View className="flex justify-between">
+          <View className="text-center">
+            <Text className="text-xl font-bold text-green-600 block mb-1">{userInfo.points}</Text>
+            <Text className="text-xs text-gray-600">总积分</Text>
           </View>
-          <View className='stat-item'>
-            <Text className='stat-number'>{userInfo.recycleCount}</Text>
-            <Text className='stat-label'>回收次数</Text>
+          <View className="text-center">
+            <Text className="text-xl font-bold text-green-600 block mb-1">{userInfo.recycleCount}</Text>
+            <Text className="text-xs text-gray-600">回收次数</Text>
           </View>
-          <View className='stat-item'>
-            <Text className='stat-number'>{userInfo.co2Saved}kg</Text>
-            <Text className='stat-label'>减少碳排放</Text>
+          <View className="text-center">
+            <Text className="text-xl font-bold text-green-600 block mb-1">{userInfo.co2Saved}kg</Text>
+            <Text className="text-xs text-gray-600">减少碳排放</Text>
           </View>
-          <View className='stat-item'>
-            <Text className='stat-number'>Lv.{userInfo.level}</Text>
-            <Text className='stat-label'>当前等级</Text>
+          <View className="text-center">
+            <Text className="text-xl font-bold text-green-600 block mb-1">Lv.{userInfo.level}</Text>
+            <Text className="text-xs text-gray-600">当前等级</Text>
           </View>
         </View>
-      </Card>
+      </View>
 
       {/* 我的设备 */}
-      <Card className='my-devices'>
-        <Text className='section-title'>我的设备</Text>
+      <View className="mx-5 mb-5 bg-white rounded-xl p-4 shadow-sm">
+        <Text className="text-base font-bold text-gray-800 block mb-4">我的设备</Text>
         {myDevices.map((device) => (
-          <View key={device.id} className='device-item'>
-            <View className='device-info'>
-              <Text className='device-name'>{device.name}</Text>
-              <Text className='device-id'>设备ID: {device.id}</Text>
-              <Text className='device-stats'>
+          <View key={device.id} className="flex items-center py-3 border-b border-gray-100 last:border-b-0">
+            <View className="flex-1">
+              <Text className="text-sm font-bold text-gray-800 block mb-1">{device.name}</Text>
+              <Text className="text-xs text-gray-600 block mb-0.5">设备ID: {device.id}</Text>
+              <Text className="text-xs text-gray-500">
                 使用{device.useCount}次 · 最近使用: {device.lastUsed}
               </Text>
             </View>
-            <Text className='device-arrow'>›</Text>
+            <Text className="text-lg text-gray-400">›</Text>
           </View>
         ))}
-      </Card>
+      </View>
 
       {/* 功能菜单 */}
-      <CellGroup className='menu-group'>
+      <View className="mx-5 mb-5 bg-white rounded-xl overflow-hidden shadow-sm">
         <Cell 
           title='消息通知'
           onClick={handleViewMessages}
@@ -182,10 +180,10 @@ function Profile() {
           onClick={handleThemeSelect}
           extra='›'
         />
-      </CellGroup>
+      </View>
 
       {/* 设置选项 */}
-      <CellGroup className='settings-group'>
+      <View className="mx-5 bg-white rounded-xl overflow-hidden shadow-sm">
         <Cell 
           title='消息推送'
           extra={
@@ -213,7 +211,7 @@ function Profile() {
             />
           }
         />
-      </CellGroup>
+      </View>
       
       {/* 主题选择器 */}
       <ThemeSelector 

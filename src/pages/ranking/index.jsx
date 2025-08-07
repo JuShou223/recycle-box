@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
 import { View, Text } from '@tarojs/components'
-import Card from '../../components/Card'
 import Tabs, { TabPane } from '../../components/Tabs'
 import Avatar from '../../components/Avatar'
 import Tag from '../../components/Tag'
-import './index.scss'
 
 function Ranking() {
   const [activeTab, setActiveTab] = useState('0')
@@ -140,81 +138,83 @@ function Ranking() {
 
   const renderRankingList = (ranking) => {
     return ranking.map((user) => (
-      <Card key={user.rank} className={`ranking-item ${user.isMe ? 'my-rank' : ''}`}>
-        <View className='rank-info'>
-          <View className='rank-number' style={{ color: getRankColor(user.rank) }}>
+      <View key={user.rank} className={`bg-white rounded-xl p-4 mb-3 transition-all ${user.isMe ? 'border-2 border-green-500 bg-gradient-to-r from-green-50 to-green-100' : 'shadow-sm'}`}>
+        <View className="flex items-center mb-3">
+          <View className="text-2xl font-bold w-10 text-center mr-3" style={{ color: getRankColor(user.rank) }}>
             {getRankIcon(user.rank)}
           </View>
           <Avatar 
             size="medium"
             src={user.avatar}
-            className='user-avatar'
+            className="mr-3"
           />
-          <View className='user-info'>
-            <View className='user-header'>
-              <Text className='username'>{user.nickname}</Text>
+          <View className="flex-1">
+            <View className="flex items-center gap-2 mb-1">
+              <Text className="text-sm font-bold text-gray-800">{user.nickname}</Text>
               {user.isMe && <Tag type='primary' size='small'>我</Tag>}
               {user.level && (
                 <Tag type='warning' size='small'>Lv.{user.level}</Tag>
               )}
             </View>
-            <Text className='user-points'>{user.points}积分</Text>
+            <Text className="text-base font-bold text-yellow-600">{user.points}积分</Text>
           </View>
         </View>
         
-        <View className='user-stats'>
-          <View className='stat-item'>
-            <Text className='stat-number'>{user.recycleCount}</Text>
-            <Text className='stat-label'>回收次数</Text>
+        <View className="flex justify-around pt-3 border-t border-gray-100">
+          <View className="text-center">
+            <Text className="text-base font-bold text-green-600 block mb-0.5">{user.recycleCount}</Text>
+            <Text className="text-xs text-gray-600">回收次数</Text>
           </View>
-          <View className='stat-item'>
-            <Text className='stat-number'>{user.co2Saved}kg</Text>
-            <Text className='stat-label'>减少碳排放</Text>
+          <View className="text-center">
+            <Text className="text-base font-bold text-green-600 block mb-0.5">{user.co2Saved}kg</Text>
+            <Text className="text-xs text-gray-600">减少碳排放</Text>
           </View>
         </View>
-      </Card>
+      </View>
     ))
   }
 
   return (
-    <View className='ranking-page'>
+    <View className="min-h-screen bg-gray-50">
       {/* 页面标题 */}
-      <View className='page-header'>
-        <Text className='page-title'>🏆 环保达人榜</Text>
-        <Text className='page-subtitle'>看看谁是最棒的环保达人</Text>
+      <View className="bg-gradient-to-br from-green-500 to-green-600 text-white text-center py-8 px-5">
+        <Text className="text-xl font-bold text-white block mb-2">🏆 环保达人榜</Text>
+        <Text className="text-sm text-green-100">看看谁是最棒的环保达人</Text>
       </View>
 
       {/* 排行榜标签页 */}
-      <Tabs value={activeTab} onChange={setActiveTab} className='ranking-tabs'>
+      <View className="mx-5">
+      <Tabs value={activeTab} onChange={setActiveTab}>
         <TabPane title='本周排行'>
-          <View className='ranking-list'>
+          <View>
             {renderRankingList(weeklyRanking)}
           </View>
         </TabPane>
         
         <TabPane title='本月排行'>
-          <View className='ranking-list'>
+          <View>
             {renderRankingList(monthlyRanking)}
           </View>
         </TabPane>
         
         <TabPane title='总排行'>
-          <View className='ranking-list'>
+          <View>
             {renderRankingList(totalRanking)}
           </View>
         </TabPane>
       </Tabs>
+      </View>
 
       {/* 排行规则说明 */}
-      <Card className='ranking-rules'>
-        <Text className='rules-title'>📋 排行规则</Text>
-        <View className='rules-content'>
-          <Text className='rule-item'>• 积分越高排名越靠前</Text>
-          <Text className='rule-item'>• 每日24:00更新排行榜</Text>
-          <Text className='rule-item'>• 前三名可获得专属徽章</Text>
-          <Text className='rule-item'>• 月度冠军可获得额外奖励</Text>
+      <View className="m-5 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl p-4 border border-yellow-200">
+        <Text className="text-sm font-bold text-yellow-700 block mb-3">📋 排行规则</Text>
+        <View>
+          <Text className="text-xs text-yellow-800 block mb-1 leading-relaxed">• 积分越高排名越靠前</Text>
+          <Text className="text-xs text-yellow-800 block mb-1 leading-relaxed">• 每日24:00更新排行榜</Text>
+          <Text className="text-xs text-yellow-800 block mb-1 leading-relaxed">• 前三名可获得专属徽章</Text>
+          <Text className="text-xs text-yellow-800 leading-relaxed">• 月度冠军可获得额外奖励</Text>
         </View>
-      </Card>
+      </View>
     </View>
   )
 }

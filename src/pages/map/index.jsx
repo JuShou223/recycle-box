@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, Map } from '@tarojs/components'
-import Card from '../../components/Card'
 import Button from '../../components/Button'
 import Tag from '../../components/Tag'
 import Taro from '@tarojs/taro'
-import './index.scss'
 
 function MapPage() {
   const [location, setLocation] = useState({
@@ -132,7 +130,7 @@ function MapPage() {
   }))
 
   return (
-    <View className='map-page'>
+    <View className="h-screen flex flex-col">
       {/* 地图 */}
       <Map
         id='recycleMap'
@@ -142,18 +140,18 @@ function MapPage() {
         markers={markers}
         onMarkerTap={handleMarkerTap}
         showLocation
-        className='recycle-map'
+        className="flex-1 w-full min-h-75"
       />
 
       {/* 回收箱列表 */}
-      <View className='box-list'>
-        <Text className='list-title'>附近回收箱 ({recycleBoxes.length}个)</Text>
+      <View className="max-h-96 overflow-y-auto bg-white p-4">
+        <Text className="text-base font-bold text-gray-800 block mb-3">附近回收箱 ({recycleBoxes.length}个)</Text>
         {recycleBoxes.map((box) => (
-          <Card key={box.id} className='box-card'>
-            <View className='box-header'>
-              <View className='box-info'>
-                <Text className='box-name'>{box.name}</Text>
-                <Text className='box-distance'>📍 {box.distance}m</Text>
+          <View key={box.id} className="bg-gray-50 rounded-lg p-3 mb-3 last:mb-0">
+            <View className="flex justify-between items-start mb-2">
+              <View>
+                <Text className="text-sm font-bold text-gray-800 block mb-1">{box.name}</Text>
+                <Text className="text-xs text-gray-600">📍 {box.distance}m</Text>
               </View>
               <Tag 
                 type={box.status === 'available' ? 'success' : 'danger'}
@@ -163,63 +161,63 @@ function MapPage() {
               </Tag>
             </View>
             
-            <View className='box-details'>
-              <View className='box-types'>
+            <View className="flex justify-between items-center mb-3">
+              <View className="flex gap-1">
                 {box.types.map((type, index) => (
-                  <Text key={index} className='type-badge'>{type}</Text>
+                  <Text key={index} className="bg-blue-100 text-blue-600 text-xs px-1.5 py-0.5 rounded">{type}</Text>
                 ))}
               </View>
-              <Text className='capacity-text'>容量: {box.capacity}%</Text>
+              <Text className="text-xs text-gray-600">容量: {box.capacity}%</Text>
             </View>
             
-            <View className='box-actions'>
+            <View className="flex gap-2 justify-end">
               <Button 
                 size='small'
-                type='default'
+                className="px-3 py-1 text-xs bg-gray-100 text-gray-600 rounded"
                 onClick={() => handleNavigate(box)}
               >
                 导航
               </Button>
               <Button 
                 size='small'
-                type={box.status === 'available' ? 'primary' : 'default'}
+                className={`px-3 py-1 text-xs rounded ${box.status === 'available' ? 'bg-green-500 text-white' : 'bg-gray-100 text-gray-400'}`}
                 disabled={box.status === 'full'}
                 onClick={() => handleUseBox(box)}
               >
                 {box.status === 'available' ? '使用' : '已满'}
               </Button>
             </View>
-          </Card>
+          </View>
         ))}
       </View>
 
       {/* 回收箱详情弹窗 */}
       {showBoxInfo && selectedBox && (
-        <View className='box-info-modal' onClick={() => setShowBoxInfo(false)}>
-          <View className='modal-content' onClick={(e) => e.stopPropagation()}>
-            <Text className='modal-title'>{selectedBox.name}</Text>
-            <Text className='modal-distance'>距离: {selectedBox.distance}m</Text>
-            <View className='modal-types'>
-              <Text className='types-label'>支持类型:</Text>
+        <View className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setShowBoxInfo(false)}>
+          <View className="bg-white rounded-xl p-5 mx-5 max-w-80 w-full" onClick={(e) => e.stopPropagation()}>
+            <Text className="text-base font-bold text-gray-800 block mb-2">{selectedBox.name}</Text>
+            <Text className="text-sm text-gray-600 block mb-3">距离: {selectedBox.distance}m</Text>
+            <View className="flex items-center flex-wrap gap-1.5 mb-3">
+              <Text className="text-xs text-gray-600">支持类型:</Text>
               {selectedBox.types.map((type, index) => (
-                <Text key={index} className='type-tag'>{type}</Text>
+                <Text key={index} className="bg-blue-100 text-blue-600 text-xs px-2 py-1 rounded">{type}</Text>
               ))}
             </View>
-            <Text className='modal-capacity'>
+            <Text className="text-xs text-gray-600 block mb-4">
               容量: {selectedBox.capacity}% 
               {selectedBox.status === 'full' && ' (已满)'}
             </Text>
-            <View className='modal-actions'>
+            <View className="flex gap-3 justify-center">
               <Button 
                 size='small'
-                type='default'
+                className="px-4 py-2 text-xs bg-gray-100 text-gray-600 rounded"
                 onClick={() => handleNavigate(selectedBox)}
               >
                 导航前往
               </Button>
               <Button 
                 size='small'
-                type={selectedBox.status === 'available' ? 'primary' : 'default'}
+                className={`px-4 py-2 text-xs rounded ${selectedBox.status === 'available' ? 'bg-green-500 text-white' : 'bg-gray-100 text-gray-400'}`}
                 disabled={selectedBox.status === 'full'}
                 onClick={() => handleUseBox(selectedBox)}
               >

@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
 import { View, Text, Image } from '@tarojs/components'
-import Card from '../../components/Card'
 import Button from '../../components/Button'
 import Tabs, { TabPane } from '../../components/Tabs'
 import Tag from '../../components/Tag'
 import Taro from '@tarojs/taro'
-import './index.scss'
 
 function Exchange() {
   const [activeTab, setActiveTab] = useState('0')
@@ -196,28 +194,28 @@ function Exchange() {
   }
 
   const renderExchangeItem = (item, type) => (
-    <Card key={item.id} className='exchange-item'>
+    <View key={item.id} className="flex bg-white rounded-xl overflow-hidden mb-4 shadow-sm">
       <Image 
         src={item.image}
-        className='item-image'
+        className="w-25 h-25 flex-shrink-0 bg-gray-200"
         mode='aspectFill'
       />
-      <View className='item-content'>
-        <Text className='item-name'>{item.name}</Text>
-        <Text className='item-description'>{item.description}</Text>
+      <View className="flex-1 p-3 flex flex-col">
+        <Text className="text-sm font-bold text-gray-800 block mb-1 leading-tight">{item.name}</Text>
+        <Text className="text-xs text-gray-600 block mb-2 leading-relaxed">{item.description}</Text>
         
-        <View className='item-info'>
-          <View className='price-info'>
-            <Text className='points-price'>{item.points}积分</Text>
+        <View className="flex-1 flex flex-col justify-between">
+          <View className="flex items-baseline gap-2 mb-2">
+            <Text className="text-base font-bold text-yellow-600">{item.points}积分</Text>
             {item.originalPrice && (
-              <Text className='original-price'>原价¥{item.originalPrice}</Text>
+              <Text className="text-xs text-gray-500 line-through">原价¥{item.originalPrice}</Text>
             )}
             {item.amount && (
-              <Text className='amount-info'>¥{item.amount}</Text>
+              <Text className="text-sm font-bold text-red-500">¥{item.amount}</Text>
             )}
           </View>
           
-          <View className='extra-info'>
+          <View className="flex gap-1 mb-2 flex-wrap">
             {item.validDays && (
               <Tag size='small' type='warning'>
                 {item.validDays}天有效
@@ -239,10 +237,9 @@ function Exchange() {
         
         <Button 
           size='small'
-          type={userPoints >= item.points && item.stock > 0 ? 'primary' : 'default'}
+          className={`self-end min-w-20 h-8 text-xs ${userPoints >= item.points && item.stock > 0 ? 'bg-green-500 text-white' : 'bg-gray-100 text-gray-400'}`}
           disabled={userPoints < item.points || item.stock === 0}
           onClick={() => handleExchange(item, type)}
-          className='exchange-btn'
         >
           {userPoints >= item.points 
             ? (item.stock > 0 ? '立即兑换' : '库存不足')
@@ -250,44 +247,46 @@ function Exchange() {
           }
         </Button>
       </View>
-    </Card>
+    </View>
   )
 
   return (
-    <View className='exchange-page'>
+    <View className="min-h-screen bg-gray-50">
       {/* 积分余额 */}
-      <Card className='points-balance'>
-        <Text className='balance-label'>我的积分</Text>
-        <Text className='balance-amount'>{userPoints}</Text>
-        <Text className='balance-tip'>积分可兑换各种好礼</Text>
-      </Card>
+      <View className="m-5 rounded-2xl bg-gradient-to-br from-yellow-500 to-orange-500 text-white text-center p-5">
+        <Text className="text-sm text-yellow-100 block mb-2">我的积分</Text>
+        <Text className="text-3xl font-bold text-white block mb-1">{userPoints}</Text>
+        <Text className="text-xs text-yellow-100">积分可兑换各种好礼</Text>
+      </View>
 
       {/* 兑换分类 */}
-      <Tabs value={activeTab} onChange={setActiveTab} className='exchange-tabs'>
+      <View className="mx-5">
+      <Tabs value={activeTab} onChange={setActiveTab}>
         <TabPane title='优惠券'>
-          <View className='exchange-list'>
+          <View>
             {coupons.map(item => renderExchangeItem(item, 'coupon'))}
           </View>
         </TabPane>
         
         <TabPane title='现金红包'>
-          <View className='exchange-list'>
+          <View>
             {cashRewards.map(item => renderExchangeItem(item, 'cash'))}
           </View>
         </TabPane>
         
         <TabPane title='实物奖品'>
-          <View className='exchange-list'>
+          <View>
             {gifts.map(item => renderExchangeItem(item, 'gift'))}
           </View>
         </TabPane>
         
         <TabPane title='话费充值'>
-          <View className='exchange-list'>
+          <View>
             {recharges.map(item => renderExchangeItem(item, 'recharge'))}
           </View>
         </TabPane>
       </Tabs>
+      </View>
     </View>
   )
 }

@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
 import { View, Text } from '@tarojs/components'
-import Card from '../../components/Card'
 import Tabs, { TabPane } from '../../components/Tabs'
 import Tag from '../../components/Tag'
 import Button from '../../components/Button'
-import './index.scss'
 
 function Messages() {
   const [activeTab, setActiveTab] = useState('0')
@@ -122,23 +120,23 @@ function Messages() {
 
   const renderMessageList = (messages) => {
     return messages.map((message) => (
-      <View key={message.id} className={`message-item ${!message.read ? 'unread' : ''}`}>
-        <View className='message-header'>
-          <View className='message-title-row'>
-            <Text className='message-icon'>{getMessageIcon(message.type)}</Text>
-            <Text className='message-title'>{message.title}</Text>
-            {!message.read && <View className='unread-dot' />}
+      <View key={message.id} className={`bg-white rounded-lg p-4 mb-3 relative transition-all ${!message.read ? 'border-l-4 border-green-500 bg-green-50' : ''}`}>
+        <View className="mb-2">
+          <View className="flex items-center flex-1">
+            <Text className="text-base mr-2">{getMessageIcon(message.type)}</Text>
+            <Text className="text-sm font-bold text-gray-800 flex-1">{message.title}</Text>
+            {!message.read && <View className="w-2 h-2 bg-red-500 rounded-full ml-2" />}
           </View>
           <Tag 
             type={getMessageTypeColor(message.type)}
             size='small'
-            className='message-tag'
+            className="mt-2"
           >
             {message.type}
           </Tag>
         </View>
-        <Text className='message-content'>{message.content}</Text>
-        <Text className='message-time'>{message.time}</Text>
+        <Text className="text-xs text-gray-600 leading-relaxed block mb-2">{message.content}</Text>
+        <Text className="text-xs text-gray-500">{message.time}</Text>
       </View>
     ))
   }
@@ -154,33 +152,33 @@ function Messages() {
   }
 
   return (
-    <View className='messages-page'>
+    <View className="min-h-screen bg-gray-50">
       {/* 操作按钮 */}
-      <View className='message-actions'>
-        <Button size='small' onClick={handleMarkAllRead}>
+      <View className="flex justify-end gap-3 p-4 bg-white border-b border-gray-100">
+        <Button size='small' className="px-3 py-1 text-xs" onClick={handleMarkAllRead}>
           全部已读
         </Button>
-        <Button size='small' type='default' onClick={handleClearAll}>
+        <Button size='small' className="px-3 py-1 text-xs bg-gray-100 text-gray-600" onClick={handleClearAll}>
           清空消息
         </Button>
       </View>
 
       {/* 消息标签页 */}
-      <Tabs value={activeTab} onChange={setActiveTab} className='message-tabs'>
+      <Tabs value={activeTab} onChange={setActiveTab}>
         <TabPane title={`回收记录(${recycleMessages.filter(m => !m.read).length})`}>
-          <View className='message-list'>
+          <View className="p-5">
             {renderMessageList(recycleMessages)}
           </View>
         </TabPane>
         
         <TabPane title={`活动通知(${activityMessages.filter(m => !m.read).length})`}>
-          <View className='message-list'>
+          <View className="p-5">
             {renderMessageList(activityMessages)}
           </View>
         </TabPane>
         
         <TabPane title={`系统消息(${systemMessages.filter(m => !m.read).length})`}>
-          <View className='message-list'>
+          <View className="p-5">
             {renderMessageList(systemMessages)}
           </View>
         </TabPane>

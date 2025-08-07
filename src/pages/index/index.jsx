@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, Image } from '@tarojs/components'
 import Button from '../../components/Button'
-import Grid from '../../components/Grid'
 import Card from '../../components/Card'
 import Avatar from '../../components/Avatar'
 import Taro from '@tarojs/taro'
 import Platform from '../../utils/platform'
-import './index.scss'
 
 function Index() {
   const [userInfo, setUserInfo] = useState({
@@ -96,69 +94,69 @@ function Index() {
   }
 
   return (
-    <View className={`index-page ${Platform.getStyleClass()}`}>
+    <View className={`min-h-screen bg-gray-50 p-5 ${Platform.getStyleClass()}`}>
       {/* 用户信息卡片 */}
-      <Card className='user-card'>
-        <View className='user-info'>
+      <View className="bg-white rounded-2xl p-5 mb-5 shadow-sm">
+        <View className="flex items-center">
           <Avatar 
             size="large" 
             src={userInfo.avatar}
-            className='user-avatar'
+            className="mr-4"
           />
-          <View className='user-details'>
-            <Text className='username'>{userInfo.nickname}</Text>
-            <Text className='user-level'>Lv.{userInfo.level} 环保达人</Text>
-            <View className='user-stats'>
-              <Text className='stat-item'>积分: {userInfo.points}</Text>
-              <Text className='stat-item'>回收: {userInfo.recycleCount}次</Text>
+          <View className="flex-1">
+            <Text className="text-xl font-bold text-gray-800 mb-1">{userInfo.nickname}</Text>
+            <Text className="text-sm text-green-600 mb-2">Lv.{userInfo.level} 环保达人</Text>
+            <View className="flex gap-4">
+              <Text className="text-xs text-gray-600">积分: {userInfo.points}</Text>
+              <Text className="text-xs text-gray-600">回收: {userInfo.recycleCount}次</Text>
             </View>
           </View>
         </View>
-      </Card>
+      </View>
 
       {/* 今日数据 */}
-      <Card className='today-stats'>
-        <Text className='card-title'>今日环保数据</Text>
-        <View className='stats-grid'>
-          <View className='stat-box'>
-            <Text className='stat-number'>{todayStats.recycled}</Text>
-            <Text className='stat-label'>回收次数</Text>
+      <View className="bg-white rounded-2xl p-5 mb-5 shadow-sm">
+        <Text className="text-base font-bold text-gray-800 mb-4">今日环保数据</Text>
+        <View className="flex justify-around">
+          <View className="text-center">
+            <Text className="text-2xl font-bold text-green-600 block mb-1">{todayStats.recycled}</Text>
+            <Text className="text-xs text-gray-600">回收次数</Text>
           </View>
-          <View className='stat-box'>
-            <Text className='stat-number'>{todayStats.points}</Text>
-            <Text className='stat-label'>获得积分</Text>
+          <View className="text-center">
+            <Text className="text-2xl font-bold text-green-600 block mb-1">{todayStats.points}</Text>
+            <Text className="text-xs text-gray-600">获得积分</Text>
           </View>
-          <View className='stat-box'>
-            <Text className='stat-number'>{todayStats.co2Saved}kg</Text>
-            <Text className='stat-label'>减少碳排放</Text>
+          <View className="text-center">
+            <Text className="text-2xl font-bold text-green-600 block mb-1">{todayStats.co2Saved}kg</Text>
+            <Text className="text-xs text-gray-600">减少碳排放</Text>
           </View>
         </View>
-      </Card>
+      </View>
 
       {/* 快速操作 */}
-      <Card className='quick-actions'>
-        <Text className='card-title'>快速操作</Text>
-        <Grid columns={2} gap={16}>
+      <View className="bg-white rounded-2xl p-5 mb-5 shadow-sm">
+        <Text className="text-base font-bold text-gray-800 mb-4">快速操作</Text>
+        <View className="grid grid-cols-2 gap-4">
           {quickActions.map((action, index) => (
             <View 
               key={index}
-              className='action-item'
+              className="bg-gray-50 rounded-xl p-5 text-center active:scale-95 transition-transform"
               onClick={() => handleQuickAction(action.path)}
             >
-              <Text className='action-icon'>{action.icon}</Text>
-              <Text className='action-title'>{action.title}</Text>
-              <Text className='action-desc'>{action.desc}</Text>
+              <Text className="text-3xl block mb-2">{action.icon}</Text>
+              <Text className="text-sm font-bold text-gray-800 block mb-1">{action.title}</Text>
+              <Text className="text-xs text-gray-600">{action.desc}</Text>
             </View>
           ))}
-        </Grid>
-      </Card>
+        </View>
+      </View>
 
       {/* 扫码按钮 */}
-      <View className='scan-button-container'>
+      <View className="my-5">
         <Button 
           type='primary' 
           size='large'
-          className='scan-button'
+          className="w-full h-14 rounded-3xl text-lg font-bold bg-gradient-to-r from-green-500 to-green-600 shadow-lg"
           onClick={handleScanCode}
         >
           📱 立即扫码回收
@@ -166,12 +164,12 @@ function Index() {
       </View>
 
       {/* 环保提示 */}
-      <Card className='eco-tip'>
-        <Text className='tip-title'>💡 环保小贴士</Text>
-        <Text className='tip-content'>
+      <View className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-5 border border-yellow-200">
+        <Text className="text-sm font-bold text-yellow-700 block mb-2">💡 环保小贴士</Text>
+        <Text className="text-xs text-gray-600 leading-relaxed">
           每回收1kg废纸可以减少3.3kg的CO₂排放，相当于种植0.1棵树！
         </Text>
-      </Card>
+      </View>
     </View>
   )
 }
