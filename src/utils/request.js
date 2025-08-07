@@ -1,9 +1,16 @@
 import Taro from '@tarojs/taro'
+import Platform from './platform'
 
 // API基础配置
-const BASE_URL = process.env.NODE_ENV === 'development' 
-  ? 'http://localhost:3000/api' 
-  : 'https://api.recycling.com'
+const BASE_URL = Platform.execute({
+  weapp: () => process.env.NODE_ENV === 'development' 
+    ? 'https://dev-api.recycling.com' 
+    : 'https://api.recycling.com',
+  h5: () => process.env.NODE_ENV === 'development' 
+    ? 'http://localhost:3000/api' 
+    : 'https://api.recycling.com',
+  default: () => 'https://api.recycling.com'
+})
 
 // 请求拦截器
 const interceptors = {

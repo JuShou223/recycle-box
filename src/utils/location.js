@@ -1,5 +1,6 @@
 import Taro from '@tarojs/taro'
 import Storage from './storage'
+import Platform from './platform'
 
 /**
  * 位置服务封装
@@ -71,6 +72,23 @@ class LocationService {
    * 检查位置权限
    */
   static async checkLocationAuth() {
+    // H5环境直接检查浏览器API
+    if (Platform.isH5()) {
+      return new Promise((resolve) => {
+        if (!navigator.geolocation) {
+          resolve(false)
+          return
+        }
+        
+        navigator.permissions.query({ name: 'geolocation' }).then((result) => {
+          resolve(result.state !== 'denied')
+        }).catch(() => {
+          resolve(true) // 如果无法查询权限，假设可用
+        })
+      })
+    }
+    
+    // 小程序环境
     try {
       const authSetting = await Taro.getSetting()
       
