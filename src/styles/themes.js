@@ -1,3 +1,6 @@
+import Taro from '@tarojs/taro'
+import Storage from '../utils/storage'
+
 // 主题颜色配置
 export const themes = {
   // 默认绿色环保主题
@@ -145,14 +148,13 @@ export const defaultTheme = 'green'
 
 // 获取当前主题
 export const getCurrentTheme = () => {
-  const savedTheme = localStorage.getItem('app-theme')
-  return savedTheme || defaultTheme
+  return Storage.getTheme()
 }
 
 // 设置主题
 export const setTheme = (themeName) => {
   if (themes[themeName]) {
-    localStorage.setItem('app-theme', themeName)
+    Storage.setTheme(themeName)
     applyTheme(themeName)
     return true
   }
@@ -162,14 +164,18 @@ export const setTheme = (themeName) => {
 // 应用主题到CSS变量
 export const applyTheme = (themeName) => {
   const theme = themes[themeName] || themes[defaultTheme]
-  const root = document.documentElement
   
-  // 设置CSS变量
-  Object.keys(theme).forEach(key => {
-    if (key !== 'name') {
-      root.style.setProperty(`--theme-${key}`, theme[key])
-    }
-  })
+  // 检查是否为H5环境
+  if (typeof document !== 'undefined' && document.documentElement) {
+    const root = document.documentElement
+    
+    // 设置CSS变量
+    Object.keys(theme).forEach(key => {
+      if (key !== 'name') {
+        root.style.setProperty(`--theme-${key}`, theme[key])
+      }
+    })
+  }
 }
 
 // 获取主题颜色

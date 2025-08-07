@@ -183,6 +183,21 @@ class Storage {
   }
 
   /**
+   * 设置主题
+   * @param {string} theme 主题名称
+   */
+  static setTheme(theme) {
+    return this.set('app-theme', theme)
+  }
+
+  /**
+   * 获取主题
+   */
+  static getTheme() {
+    return this.get('app-theme', 'green')
+  }
+
+  /**
    * 设置缓存数据
    * @param {string} key 键名
    * @param {any} data 数据
