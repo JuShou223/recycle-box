@@ -11,22 +11,22 @@ function Cell({
 }) {
   return (
     <View 
-      className={`flex items-center p-16 border-b border-theme-border-light last:border-b-0 transition-colors ${onClick ? 'cursor-pointer active:bg-theme-bg-dark' : ''} ${className}`}
+      className={`flex items-center p-16 border-b border-gray-100 ${className}`}
       onClick={onClick}
       {...props}
     >
       <View className="flex-1">
-        <View className="text-14 text-theme-text font-medium">
+        <View className="text-14 text-gray-800 font-medium">
           {title}
         </View>
         {children && (
-          <View className="mt-4 text-12 text-theme-text-secondary">
+          <View className="mt-4 text-12 text-gray-600">
             {children}
           </View>
         )}
       </View>
       {extra && (
-        <View className="ml-12 text-14 text-theme-text-secondary flex items-center">
+        <View className="ml-12 text-14 text-gray-600 flex items-center">
           {extra}
         </View>
       )}
@@ -36,7 +36,7 @@ function Cell({
 
 function CellGroup({ children, className = '', ...props }) {
   return (
-    <View className={`bg-theme-bg-light rounded-12 overflow-hidden mb-12 ${className}`} {...props}>
+    <View className={`bg-white rounded-12 overflow-hidden mb-12 ${className}`} {...props}>
       {children}
     </View>
   )

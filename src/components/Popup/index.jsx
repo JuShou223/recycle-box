@@ -24,13 +24,14 @@ function Popup({
   }
 
   const contentClasses = {
-    bottom: 'w-full bg-theme-bg-light rounded-t-16 max-h-80vh overflow-y-auto',
-    center: 'bg-theme-bg-light rounded-12 m-20 max-w-320 w-full',
-    top: 'w-full bg-theme-bg-light rounded-b-16 max-h-80vh overflow-y-auto'
+    bottom: 'w-full bg-white rounded-t-16 overflow-y-auto',
+    center: 'bg-white rounded-12 m-20 max-w-320 w-full',
+    top: 'w-full bg-white rounded-b-16 overflow-y-auto'
   }
   return (
     <View
-      className={`fixed inset-0 bg-black bg-opacity-50 z-1000 flex ${positionClasses[position]} ${className}`}
+      className={`fixed inset-0 bg-black z-1000 flex ${positionClasses[position]} ${className}`}
+      style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
       onClick={handleMaskClick}
       {...props}
     >

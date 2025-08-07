@@ -25,18 +25,19 @@ function Modal({
   return (
     <View
       className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-1000 ${className}`}
+      style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
       onClick={handleMaskClick}
       {...props}
     >
-      <View className="bg-theme-bg-light rounded-12 m-20 max-w-320 w-full overflow-hidden">
-        {title && <View className="p-20 pb-0 text-16 font-bold text-theme-text text-center">{title}</View>}
-        <View className="p-16 px-20 text-theme-text-secondary leading-relaxed text-center">{children}</View>
-        <View className="flex border-t border-theme-border">
+      <View className="bg-white rounded-12 m-20 max-w-320 w-full overflow-hidden">
+        {title && <View className="p-20 pb-0 text-16 font-bold text-gray-800 text-center">{title}</View>}
+        <View className="p-16 px-20 text-gray-600 text-center">{children}</View>
+        <View className="flex border-t border-gray-200">
           {showCancel && (
             <Button
               type="default"
               onClick={onCancel}
-              className="flex-1 rounded-0 border-0 h-48 border-r border-theme-border last:border-r-0"
+              className="flex-1 rounded-0 border-0 h-48 border-r border-gray-200"
             >
               {cancelText}
             </Button>

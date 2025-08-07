@@ -15,20 +15,19 @@ function Switch({
 
   return (
     <View 
-      className={`relative w-44 h-24 rounded-12 cursor-pointer transition-all border ${
+      className={`relative w-44 h-24 rounded-12 border ${
         checked 
-          ? 'bg-theme-primary border-theme-primary' 
-          : 'bg-theme-bg-dark border-theme-border'
-      } ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${className}`}
+          ? 'bg-green-500 border-green-500' 
+          : 'bg-gray-200 border-gray-300'
+      } ${disabled ? 'opacity-50' : ''} ${className}`}
       onClick={handleClick}
       {...props}
     >
       <View 
-        className="absolute top-2 w-18 h-18 bg-theme-bg-light rounded-full transition-all shadow-sm"
+        className="absolute top-2 w-18 h-18 bg-white rounded-full"
         style={{
           left: checked ? '22px' : '2px',
-          transitionDuration: '0.3s',
-          transitionTimingFunction: 'ease',
+          transition: 'left 0.3s ease',
           boxShadow: '0 1px 3px rgba(0, 0, 0, 0.3)'
         }}
       />

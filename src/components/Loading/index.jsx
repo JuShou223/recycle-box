@@ -42,8 +42,9 @@ function Loading({
         {type === "spinner" && (
           <View className="relative">
             <View 
-              className={`rounded-full border-theme-border-light border-t-theme-primary ${currentSize.spinner}`}
+              className={`rounded-full border-gray-200 ${currentSize.spinner}`}
               style={{
+                borderTopColor: '#52c41a',
                 animation: 'spin 1s linear infinite'
               }}
             />
@@ -53,21 +54,21 @@ function Loading({
         {type === "dots" && (
           <View className={`flex ${currentSize.dots}`}>
             <View 
-              className={`rounded-full bg-theme-primary ${currentSize.dot}`}
+              className={`rounded-full bg-green-500 ${currentSize.dot}`}
               style={{
                 animation: 'bounce 1.4s ease-in-out infinite both',
                 animationDelay: '-0.32s'
               }}
             />
             <View 
-              className={`rounded-full bg-theme-primary ${currentSize.dot}`}
+              className={`rounded-full bg-green-500 ${currentSize.dot}`}
               style={{
                 animation: 'bounce 1.4s ease-in-out infinite both',
                 animationDelay: '-0.16s'
               }}
             />
             <View 
-              className={`rounded-full bg-theme-primary ${currentSize.dot}`}
+              className={`rounded-full bg-green-500 ${currentSize.dot}`}
               style={{
                 animation: 'bounce 1.4s ease-in-out infinite both'
               }}
@@ -78,7 +79,7 @@ function Loading({
         {type === "pulse" && (
           <View>
             <View 
-              className={`rounded-full bg-theme-primary ${currentSize.pulse}`}
+              className={`rounded-full bg-green-500 ${currentSize.pulse}`}
               style={{
                 animation: 'pulse 1.5s ease-in-out infinite'
               }}
@@ -86,7 +87,7 @@ function Loading({
           </View>
         )}
 
-        {text && <Text className={`text-theme-text-secondary text-center leading-tight ${currentSize.text}`}>{text}</Text>}
+        {text && <Text className={`text-gray-600 text-center ${currentSize.text}`}>{text}</Text>}
       </View>
     </View>
   );
@@ -95,7 +96,7 @@ function Loading({
 // 页面级加载组件
 function PageLoading({ text = "页面加载中...", ...props }) {
   return (
-    <View className="fixed inset-0 bg-theme-bg-light flex items-center justify-center z-9999">
+    <View className="fixed inset-0 bg-white flex items-center justify-center z-9999">
       <Loading text={text} {...props} />
     </View>
   );
@@ -104,7 +105,7 @@ function PageLoading({ text = "页面加载中...", ...props }) {
 // 内容加载组件
 function ContentLoading({ text = "内容加载中...", ...props }) {
   return (
-    <View className="p-40 text-center bg-theme-bg-light rounded-8">
+    <View className="p-40 text-center bg-white rounded-8">
       <Loading size="small" text={text} {...props} />
     </View>
   );

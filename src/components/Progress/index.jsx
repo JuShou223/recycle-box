@@ -4,23 +4,22 @@ import { View } from '@tarojs/components'
 function Progress({ 
   percentage = 0,
   strokeWidth = 8,
-  strokeColor = 'var(--theme-primary)',
+  strokeColor = '#52c41a',
   className = '',
   ...props 
 }) {
   return (
     <View className={`w-full ${className}`} {...props}>
       <View 
-        className="bg-theme-bg-dark rounded-4 overflow-hidden relative"
+        className="bg-gray-200 rounded-4 overflow-hidden relative"
         style={{ height: `${strokeWidth}px` }}
       >
         <View 
-          className="h-full rounded-4 transition-all"
+          className="h-full rounded-4"
           style={{ 
             width: `${Math.min(100, Math.max(0, percentage))}%`,
-            backgroundColor: strokeColor
-            transitionDuration: '0.3s',
-            transitionTimingFunction: 'ease'
+            backgroundColor: strokeColor,
+            transition: 'width 0.3s ease'
           }}
         />
       </View>

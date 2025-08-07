@@ -60,25 +60,26 @@ function Empty({
             typeof image === 'string' && image.startsWith('http') ? (
               <Image 
                 src={image} 
-                className={`opacity-60 rounded-8 ${currentSize.img}`}
+                className={`rounded-8 ${currentSize.img}`}
+                style={{ opacity: 0.6 }}
                 mode="aspectFit"
               />
             ) : (
-              <Text className={`opacity-60 leading-none ${currentSize.icon}`}>{image}</Text>
+              <Text className={`leading-none ${currentSize.icon}`} style={{ opacity: 0.6 }}>{image}</Text>
             )
           ) : (
-            <Text className={`opacity-60 leading-none ${currentSize.icon}`}>{getDefaultImage()}</Text>
+            <Text className={`leading-none ${currentSize.icon}`} style={{ opacity: 0.6 }}>{getDefaultImage()}</Text>
           )}
         </View>
         
         {/* 标题 */}
         {title && (
-          <Text className={`text-theme-text font-medium leading-tight ${currentSize.title}`}>{title}</Text>
+          <Text className={`text-gray-800 font-medium ${currentSize.title}`}>{title}</Text>
         )}
         
         {/* 描述 */}
         {description && (
-          <Text className={`text-theme-text-secondary leading-relaxed ${currentSize.description}`}>{description}</Text>
+          <Text className={`text-gray-600 ${currentSize.description}`}>{description}</Text>
         )}
         
         {/* 操作按钮 */}

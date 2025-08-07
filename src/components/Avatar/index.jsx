@@ -15,17 +15,17 @@ function Avatar({
 
   return (
     <View 
-      className={`rounded-full overflow-hidden bg-theme-bg-dark flex items-center justify-center ${sizeClasses[size]} ${className}`} 
+      className={`rounded-full overflow-hidden bg-gray-200 flex items-center justify-center ${sizeClasses[size]} ${className}`} 
       {...props}
     >
       {src ? (
         <Image 
           src={src} 
-          className="w-full h-full object-cover"
+          className="w-full h-full"
           mode="aspectFill"
         />
       ) : (
-        <View className="text-theme-text-secondary" style={{ fontSize: '50%' }}>
+        <View className="text-gray-500 text-16">
           👤
         </View>
       )}

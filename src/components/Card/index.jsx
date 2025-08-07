@@ -4,7 +4,8 @@ import { View } from '@tarojs/components'
 function Card({ children, className = '', onClick, ...props }) {
   return (
     <View 
-      className={`bg-theme-bg-light rounded-12 p-16 shadow-sm mb-12 last:mb-0 ${className}`}
+      className={`bg-white rounded-12 p-16 mb-12 ${className}`}
+      style={{ boxShadow: '0 1px 2px rgba(0, 0, 0, 0.05)' }}
       onClick={onClick}
       {...props}
     >

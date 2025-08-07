@@ -19,21 +19,21 @@ function Tabs({
 
   return (
     <View className={className} {...props}>
-      <View className="flex bg-theme-bg-light border-b border-theme-border sticky top-0 z-10">
+      <View className="flex bg-white border-b border-gray-200 sticky top-0 z-10">
         {tabs.map((tab, index) => (
           <View
             key={index}
-            className={`flex-1 p-12 px-16 text-center text-14 cursor-pointer transition-all relative ${
+            className={`flex-1 p-12 px-16 text-center text-14 relative ${
               activeTab === index.toString() 
-                ? 'text-theme-primary font-medium' 
-                : 'text-theme-text-secondary hover:text-theme-primary'
+                ? 'text-green-500 font-medium' 
+                : 'text-gray-600'
             }`}
             onClick={() => handleTabChange(index.toString())}
           >
             {tab.props.title}
             {activeTab === index.toString() && (
               <View 
-                className="absolute bottom-0 left-half w-24 h-2 bg-theme-primary rounded-1"
+                className="absolute bottom-0 w-24 h-2 bg-green-500 rounded-1"
                 style={{ 
                   left: '50%',
                   transform: 'translateX(-50%)'

@@ -32,9 +32,9 @@ function ThemeSelector({ show, onClose }) {
       position="bottom"
       onClose={onClose}
     >
-      <View className="p-20 bg-theme-bg-light rounded-t-16">
-        <View className="flex justify-between items-center mb-20 pb-16 border-b border-theme-border-light">
-          <Text className="text-18 font-bold text-theme-text">选择主题</Text>
+      <View className="p-20 bg-white rounded-t-16">
+        <View className="flex justify-between items-center mb-20 pb-16 border-b border-gray-100">
+          <Text className="text-18 font-bold text-gray-800">选择主题</Text>
           <Button size="small" onClick={onClose}>
             完成
           </Button>
@@ -44,30 +44,30 @@ function ThemeSelector({ show, onClose }) {
           {themeList.map((theme) => (
             <View
               key={theme.key}
-              className={`flex items-center p-16 mb-12 bg-theme-bg-light border-2 rounded-12 transition-all cursor-pointer hover:transform hover:translate-y-2 hover:shadow-lg ${
+              className={`flex items-center p-16 mb-12 bg-white border-2 rounded-12 ${
                 currentTheme === theme.key 
-                  ? "border-theme-primary bg-theme-success-bg" 
-                  : "border-theme-border-light"
+                  ? "border-green-500 bg-green-50" 
+                  : "border-gray-200"
               }`}
               onClick={() => handleThemeChange(theme.key)}
             >
               <View className="flex gap-4 mr-12">
                 <View
-                  className="w-20 h-20 rounded-full border-2 border-theme-bg-light"
+                  className="w-20 h-20 rounded-full border-2 border-white"
                   style={{ backgroundColor: theme.primary }}
                 />
                 <View
-                  className="w-20 h-20 rounded-full border-2 border-theme-bg-light"
+                  className="w-20 h-20 rounded-full border-2 border-white"
                   style={{ backgroundColor: theme.secondary }}
                 />
                 <View
-                  className="w-20 h-20 rounded-full border-2 border-theme-bg-light"
+                  className="w-20 h-20 rounded-full border-2 border-white"
                   style={{ backgroundColor: theme.accent }}
                 />
               </View>
-              <Text className="flex-1 text-16 font-medium text-theme-text">{theme.name}</Text>
+              <Text className="flex-1 text-16 font-medium text-gray-800">{theme.name}</Text>
               {currentTheme === theme.key && (
-                <Text className="text-18 text-theme-primary font-bold">✓</Text>
+                <Text className="text-18 text-green-500 font-bold">✓</Text>
               )}
             </View>
           ))}
