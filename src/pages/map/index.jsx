@@ -3,8 +3,10 @@ import { View, Text, Map } from '@tarojs/components'
 import Button from '../../components/Button'
 import Tag from '../../components/Tag'
 import Taro from '@tarojs/taro'
+import { useTheme } from '../../hooks/useTheme'
 
 function MapPage() {
+  const { themeColors } = useTheme()
   const [location, setLocation] = useState({
     latitude: 39.908823,
     longitude: 116.397470
@@ -180,7 +182,11 @@ function MapPage() {
               </Button>
               <Button 
                 size='small'
-                className={`px-12 py-4 text-12 rounded-4 ${box.status === 'available' ? 'bg-green-500 text-white' : 'bg-gray-100 text-gray-400'}`}
+                className="px-12 py-4 text-12 rounded-4"
+                style={box.status === 'available' 
+                  ? { backgroundColor: themeColors.success, color: '#ffffff' }
+                  : { backgroundColor: '#f5f5f5', color: '#999999' }
+                }
                 disabled={box.status === 'full'}
                 onClick={() => handleUseBox(box)}
               >
@@ -217,7 +223,11 @@ function MapPage() {
               </Button>
               <Button 
                 size='small'
-                className={`px-16 py-8 text-12 rounded-4 ${selectedBox.status === 'available' ? 'bg-green-500 text-white' : 'bg-gray-100 text-gray-400'}`}
+                className="px-16 py-8 text-12 rounded-4"
+                style={selectedBox.status === 'available' 
+                  ? { backgroundColor: themeColors.success, color: '#ffffff' }
+                  : { backgroundColor: '#f5f5f5', color: '#999999' }
+                }
                 disabled={selectedBox.status === 'full'}
                 onClick={() => handleUseBox(selectedBox)}
               >

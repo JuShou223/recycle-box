@@ -4,8 +4,10 @@ import Button from "../../components/Button";
 import Progress from "../../components/Progress";
 import Modal from "../../components/Modal";
 import Taro from "@tarojs/taro";
+import { useTheme } from "../../hooks/useTheme";
 
 function Scan() {
+  const { themeColors } = useTheme()
   const [scanResult, setScanResult] = useState(null);
   const [recycleBox, setRecycleBox] = useState(null);
   const [isOpening, setIsOpening] = useState(false);
@@ -180,10 +182,13 @@ function Scan() {
 
         {isOpening && (
           <View className="text-center py-32">
-            <Text className="text-16 font-bold text-green-600 block mb-20">
+            <Text 
+              className="text-16 font-bold block mb-20"
+              style={{ color: themeColors.success }}
+            >
               正在开箱...
             </Text>
-            <Progress percentage={100} strokeWidth={8} strokeColor="#52c41a" />
+            <Progress percentage={100} strokeWidth={8} strokeColor={themeColors.success} />
             <Text className="text-14 text-gray-600 mt-20">
               请稍候，回收箱正在开启
             </Text>
@@ -192,10 +197,16 @@ function Scan() {
 
         {isWeighing && (
           <View className="text-center py-32">
-            <Text className="text-16 font-bold text-blue-600 block mb-16">
+            <Text 
+              className="text-16 font-bold block mb-16"
+              style={{ color: themeColors.info }}
+            >
               正在称重...
             </Text>
-            <Text className="text-36 font-bold text-green-600 block mb-16">
+            <Text 
+              className="text-36 font-bold block mb-16"
+              style={{ color: themeColors.success }}
+            >
               {weight} kg
             </Text>
             <Text className="text-14 text-gray-600">
@@ -209,10 +220,16 @@ function Scan() {
             <Text className="text-16 font-bold text-gray-800 block mb-16">
               称重完成
             </Text>
-            <Text className="text-30 font-bold text-green-600 block mb-8">
+            <Text 
+              className="text-30 font-bold block mb-8"
+              style={{ color: themeColors.success }}
+            >
               {weight} kg
             </Text>
-            <Text className="text-16 text-yellow-600 font-bold">
+            <Text 
+              className="text-16 font-bold"
+              style={{ color: themeColors.warning }}
+            >
               预计获得 {points} 积分
             </Text>
           </View>

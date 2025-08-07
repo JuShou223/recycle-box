@@ -3,8 +3,10 @@ import { View, Text } from "@tarojs/components";
 import Tabs, { TabPane } from "../../components/Tabs";
 import Tag from "../../components/Tag";
 import Button from "../../components/Button";
+import { useTheme } from "../../hooks/useTheme";
 
 function Messages() {
+  const { themeColors } = useTheme()
   const [activeTab, setActiveTab] = useState("0");
 
   const [recycleMessages] = useState([
@@ -123,8 +125,12 @@ function Messages() {
       <View
         key={message.id}
         className={`bg-white rounded-lg p-4 mb-3 relative transition-all ${
-          !message.read ? "border-l-4 border-green-500 bg-green-50" : ""
+          !message.read ? "border-l-4" : ""
         }`}
+        style={!message.read ? {
+          borderLeftColor: themeColors.success,
+          backgroundColor: themeColors.successBg
+        } : {}}
       >
         <View className="mb-2">
           <View className="flex items-center flex-1">
@@ -133,7 +139,10 @@ function Messages() {
               {message.title}
             </Text>
             {!message.read && (
-              <View className="w-8 h-8 bg-red-500 rounded-full ml-8" />
+              <View 
+                className="w-8 h-8 rounded-full ml-8"
+                style={{ backgroundColor: themeColors.error }}
+              />
             )}
           </View>
           <Tag
