@@ -1,0 +1,160 @@
+.map-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  
+  .recycle-map {
+    flex: 1;
+    width: 100%;
+    min-height: 300px;
+  }
+  
+  .box-list {
+    max-height: 40vh;
+    overflow-y: auto;
+    background: white;
+    padding: 16px;
+    
+    .list-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+      display: block;
+      margin-bottom: 12px;
+    }
+    
+    .box-card {
+      margin-bottom: 12px;
+      border-radius: 8px;
+      padding: 12px;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+      
+      .box-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 8px;
+        
+        .box-info {
+          .box-name {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            display: block;
+            margin-bottom: 4px;
+          }
+          
+          .box-distance {
+            font-size: 12px;
+            color: #666;
+          }
+        }
+      }
+      
+      .box-details {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+        
+        .box-types {
+          display: flex;
+          gap: 4px;
+          
+          .type-badge {
+            background: #e6f7ff;
+            color: #1890ff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+          }
+        }
+        
+        .capacity-text {
+          font-size: 12px;
+          color: #666;
+        }
+      }
+      
+      .box-actions {
+        display: flex;
+        gap: 8px;
+        justify-content: flex-end;
+      }
+    }
+  }
+  
+  .box-info-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    
+    .modal-content {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px;
+      max-width: 300px;
+      width: 100%;
+      
+      .modal-title {
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+        display: block;
+        margin-bottom: 8px;
+      }
+      
+      .modal-distance {
+        font-size: 14px;
+        color: #666;
+        display: block;
+        margin-bottom: 12px;
+      }
+      
+      .modal-types {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 12px;
+        
+        .types-label {
+          font-size: 13px;
+          color: #666;
+        }
+        
+        .type-tag {
+          background: #e6f7ff;
+          color: #1890ff;
+          padding: 2px 6px;
+          border-radius: 4px;
+          font-size: 12px;
+        }
+      }
+      
+      .modal-capacity {
+        font-size: 13px;
+        color: #666;
+        display: block;
+        margin-bottom: 16px;
+      }
+      
+      .modal-actions {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+      }
+    }
+  }
+}

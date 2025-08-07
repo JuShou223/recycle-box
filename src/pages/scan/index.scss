@@ -1,0 +1,237 @@
+.scan-page {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding: 20px;
+  
+  .scan-prompt {
+    text-align: center;
+    padding: 40px 20px;
+    border-radius: 16px;
+    
+    .prompt-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      display: block;
+      margin-bottom: 12px;
+    }
+    
+    .prompt-desc {
+      font-size: 14px;
+      color: #666;
+      display: block;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    
+    .scan-btn {
+      width: 200px;
+      height: 48px;
+      border-radius: 24px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+  }
+  
+  .box-info {
+    margin-bottom: 20px;
+    border-radius: 12px;
+    
+    .box-name {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      display: block;
+      margin-bottom: 8px;
+    }
+    
+    .box-location {
+      font-size: 14px;
+      color: #666;
+      display: block;
+      margin-bottom: 4px;
+    }
+    
+    .box-id {
+      font-size: 12px;
+      color: #999;
+      display: block;
+      margin-bottom: 12px;
+    }
+    
+    .box-types {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      
+      .types-label {
+        font-size: 13px;
+        color: #666;
+      }
+      
+      .type-tag {
+        background: #e6f7ff;
+        color: #1890ff;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+      }
+    }
+  }
+  
+  .operation-status {
+    margin-bottom: 20px;
+    border-radius: 12px;
+    text-align: center;
+    
+    .ready-state {
+      padding: 20px;
+      
+      .status-title {
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+        display: block;
+        margin-bottom: 8px;
+      }
+      
+      .status-desc {
+        font-size: 14px;
+        color: #666;
+        display: block;
+        margin-bottom: 20px;
+      }
+      
+      .open-btn {
+        width: 200px;
+        height: 48px;
+        border-radius: 24px;
+        font-size: 16px;
+        font-weight: bold;
+      }
+    }
+    
+    .opening-state {
+      padding: 30px 20px;
+      
+      .status-title {
+        font-size: 16px;
+        font-weight: bold;
+        color: #52c41a;
+        display: block;
+        margin-bottom: 20px;
+      }
+      
+      .status-desc {
+        font-size: 14px;
+        color: #666;
+        margin-top: 20px;
+      }
+    }
+    
+    .weighing-state {
+      padding: 30px 20px;
+      
+      .status-title {
+        font-size: 16px;
+        font-weight: bold;
+        color: #1890ff;
+        display: block;
+        margin-bottom: 16px;
+      }
+      
+      .weight-display {
+        font-size: 36px;
+        font-weight: bold;
+        color: #52c41a;
+        display: block;
+        margin-bottom: 16px;
+      }
+      
+      .status-desc {
+        font-size: 14px;
+        color: #666;
+      }
+    }
+    
+    .weight-result {
+      padding: 30px 20px;
+      
+      .status-title {
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+        display: block;
+        margin-bottom: 16px;
+      }
+      
+      .final-weight {
+        font-size: 32px;
+        font-weight: bold;
+        color: #52c41a;
+        display: block;
+        margin-bottom: 8px;
+      }
+      
+      .estimated-points {
+        font-size: 16px;
+        color: #faad14;
+        font-weight: bold;
+      }
+    }
+  }
+  
+  .classification-guide {
+    border-radius: 12px;
+    background: linear-gradient(135deg, #fff7e6 0%, #fff2d9 100%);
+    
+    .guide-title {
+      font-size: 14px;
+      font-weight: bold;
+      color: #d48806;
+      display: block;
+      margin-bottom: 12px;
+    }
+    
+    .guide-content {
+      .guide-item {
+        font-size: 12px;
+        color: #8c6e1f;
+        display: block;
+        margin-bottom: 6px;
+        line-height: 1.4;
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+  
+  .result-content {
+    text-align: center;
+    padding: 20px;
+    
+    .result-weight, .result-points {
+      font-size: 16px;
+      font-weight: bold;
+      display: block;
+      margin-bottom: 8px;
+    }
+    
+    .result-weight {
+      color: #52c41a;
+    }
+    
+    .result-points {
+      color: #faad14;
+    }
+    
+    .result-thanks {
+      font-size: 14px;
+      color: #666;
+      margin-top: 12px;
+    }
+  }
+}

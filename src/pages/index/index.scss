@@ -1,7 +1,169 @@
-.nutui-react-demo {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.index-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 20px;
+  
+  .user-card {
+    margin-bottom: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    
+    .user-info {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      
+      .user-avatar {
+        margin-right: 16px;
+      }
+      
+      .user-details {
+        flex: 1;
+        
+        .username {
+          font-size: 20px;
+          font-weight: bold;
+          color: #333;
+          display: block;
+          margin-bottom: 4px;
+        }
+        
+        .user-level {
+          font-size: 14px;
+          color: #52c41a;
+          display: block;
+          margin-bottom: 8px;
+        }
+        
+        .user-stats {
+          display: flex;
+          gap: 16px;
+          
+          .stat-item {
+            font-size: 12px;
+            color: #666;
+          }
+        }
+      }
+    }
+  }
+  
+  .today-stats {
+    margin-bottom: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    
+    .card-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+      display: block;
+      margin-bottom: 16px;
+      padding: 20px 20px 0;
+    }
+    
+    .stats-grid {
+      display: flex;
+      justify-content: space-around;
+      padding: 0 20px 20px;
+      
+      .stat-box {
+        text-align: center;
+        
+        .stat-number {
+          font-size: 24px;
+          font-weight: bold;
+          color: #52c41a;
+          display: block;
+          margin-bottom: 4px;
+        }
+        
+        .stat-label {
+          font-size: 12px;
+          color: #666;
+        }
+      }
+    }
+  }
+  
+  .quick-actions {
+    margin-bottom: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    
+    .card-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+      display: block;
+      margin-bottom: 16px;
+      padding: 20px 20px 0;
+    }
+    
+    .action-item {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+      
+      &:active {
+        transform: scale(0.95);
+        background: #e9ecef;
+      }
+      
+      .action-icon {
+        font-size: 32px;
+        display: block;
+        margin-bottom: 8px;
+      }
+      
+      .action-title {
+        font-size: 14px;
+        font-weight: bold;
+        color: #333;
+        display: block;
+        margin-bottom: 4px;
+      }
+      
+      .action-desc {
+        font-size: 12px;
+        color: #666;
+      }
+    }
+  }
+  
+  .scan-button-container {
+    margin: 20px 0;
+    
+    .scan-button {
+      width: 100%;
+      height: 56px;
+      border-radius: 28px;
+      font-size: 18px;
+      font-weight: bold;
+      background: linear-gradient(135deg, #52c41a 0%, #73d13d 100%);
+      box-shadow: 0 4px 12px rgba(82, 196, 26, 0.3);
+    }
+  }
+  
+  .eco-tip {
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #fff7e6 0%, #fff2d9 100%);
+    
+    .tip-title {
+      font-size: 14px;
+      font-weight: bold;
+      color: #d48806;
+      display: block;
+      margin-bottom: 8px;
+    }
+    
+    .tip-content {
+      font-size: 12px;
+      color: #8c6e1f;
+      line-height: 1.5;
+    }
+  }
 }
