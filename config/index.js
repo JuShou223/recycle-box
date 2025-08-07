@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-08-07 12:37:42
  * @LastEditors: 徐一鸣
- * @LastEditTime: 2025-08-07 13:00:49
+ * @LastEditTime: 2025-08-07 14:17:00
  * @Description:
  */
 import { defineConfig } from "@tarojs/cli";
@@ -41,10 +41,13 @@ export default defineConfig(async (merge, { command, mode }) => {
     },
     mini: {
       postcss: {
-        pxtransform: {
-          enable: true,
-          config: {},
+        cssModules: {
+          enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
         },
+        // pxtransform: {
+        //   enable: true,
+        //   config: {},
+        // },
         cssModules: {
           enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
           config: {
@@ -70,10 +73,13 @@ export default defineConfig(async (merge, { command, mode }) => {
         chunkFilename: "css/[name].[chunkhash].css",
       },
       postcss: {
-        autoprefixer: {
-          enable: true,
-          config: {},
+        cssModules: {
+          enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
         },
+        // autoprefixer: {
+        //   enable: true,
+        //   config: {},
+        // },
         cssModules: {
           enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
           config: {
