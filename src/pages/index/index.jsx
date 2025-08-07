@@ -5,6 +5,7 @@ import Grid from '../../components/Grid'
 import Card from '../../components/Card'
 import Avatar from '../../components/Avatar'
 import Taro from '@tarojs/taro'
+import Platform from '../../utils/platform'
 import './index.scss'
 
 function Index() {
@@ -54,24 +55,48 @@ function Index() {
   }
 
   const handleScanCode = () => {
-    Taro.scanCode({
-      success: (res) => {
-        console.log('扫码结果:', res.result)
-        Taro.navigateTo({ 
-          url: `/pages/scan/index?code=${res.result}` 
+    Platform.execute({
+      weapp: () => {
+        // 微信小程序扫码
+        Taro.scanCode({
+          success: (res) => {
+            console.log('扫码结果:', res.result)
+            Taro.navigateTo({ 
+              url: `/pages/scan/index?code=${res.result}` 
+            })
+          },
+          fail: (err) => {
+            Taro.showToast({
+              title: '扫码失败',
+              icon: 'error'
+            })
+          }
         })
       },
-      fail: (err) => {
-        Taro.showToast({
-          title: '扫码失败',
-          icon: 'error'
+      h5: () => {
+        // H5环境模拟扫码或跳转到扫码页面
+        Taro.showModal({
+          title: '扫码功能',
+          content: 'H5环境暂不支持扫码，是否直接进入扫码页面？',
+          success: (res) => {
+            if (res.confirm) {
+              Taro.navigateTo({ 
+                url: '/pages/scan/index' 
+              })
+            }
+          }
+        })
+      },
+      default: () => {
+        Taro.navigateTo({ 
+          url: '/pages/scan/index' 
         })
       }
     })
   }
 
   return (
-    <View className='index-page'>
+    <View className={`index-page ${Platform.getStyleClass()}`}>
       {/* 用户信息卡片 */}
       <Card className='user-card'>
         <View className='user-info'>

@@ -262,6 +262,18 @@ export const PLATFORMS = {
   JD: 'jd'
 }
 
+// 平台常量
+export const PLATFORMS = {
+  WEAPP: 'weapp',
+  H5: 'h5',
+  RN: 'rn',
+  SWAN: 'swan',
+  ALIPAY: 'alipay',
+  TT: 'tt',
+  QQ: 'qq',
+  JD: 'jd'
+}
+
 // 默认配置
 export const DEFAULT_CONFIG = {
   theme: THEMES.GREEN,
