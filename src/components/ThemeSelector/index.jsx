@@ -2,18 +2,14 @@ import React, { useState, useEffect } from "react";
 import { View, Text } from "@tarojs/components";
 import Popup from "../Popup";
 import Button from "../Button";
-import { themes, getCurrentTheme, setTheme } from "../../styles/themes";
+import { themes } from "../../styles/themes";
+import { useTheme } from "../../hooks/useTheme";
 
 function ThemeSelector({ show, onClose }) {
-  const [currentTheme, setCurrentTheme] = useState(getCurrentTheme());
-
-  useEffect(() => {
-    setCurrentTheme(getCurrentTheme());
-  }, [show]);
+  const { currentTheme, changeTheme } = useTheme();
 
   const handleThemeChange = (themeName) => {
-    if (setTheme(themeName)) {
-      setCurrentTheme(themeName);
+    if (changeTheme(themeName)) {
       // 触发页面重新渲染
       setTimeout(() => {
         if (onClose) onClose();

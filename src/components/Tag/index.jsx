@@ -1,5 +1,6 @@
 import React from 'react'
 import { View } from '@tarojs/components'
+import { useTheme } from '../../hooks/useTheme'
 
 function Tag({ 
   children, 
@@ -8,13 +9,23 @@ function Tag({
   className = '',
   ...props 
 }) {
-  const typeClasses = {
-    default: 'bg-gray-100 text-gray-800 border-gray-300',
-    primary: 'bg-blue-100 text-blue-600 border-blue-300',
-    success: 'bg-green-100 text-green-600 border-green-300',
-    warning: 'bg-yellow-100 text-yellow-600 border-yellow-300',
-    danger: 'bg-red-100 text-red-600 border-red-300',
-    info: 'bg-blue-100 text-blue-600 border-blue-300'
+  const { themeColors } = useTheme()
+
+  const getTypeStyle = (type) => {
+    switch (type) {
+      case 'primary':
+        return { backgroundColor: '#e6f7ff', color: themeColors.primary, borderColor: themeColors.primaryLight }
+      case 'success':
+        return { backgroundColor: '#f6ffed', color: themeColors.success, borderColor: themeColors.success }
+      case 'warning':
+        return { backgroundColor: '#fff7e6', color: themeColors.warning, borderColor: themeColors.warning }
+      case 'danger':
+        return { backgroundColor: '#fff2f0', color: themeColors.error, borderColor: themeColors.error }
+      case 'info':
+        return { backgroundColor: '#e6f7ff', color: themeColors.info, borderColor: themeColors.info }
+      default:
+        return { backgroundColor: '#f5f5f5', color: '#666666', borderColor: '#d9d9d9' }
+    }
   }
 
   const sizeClasses = {
@@ -23,9 +34,11 @@ function Tag({
     large: 'px-12 py-6 text-14 h-28'
   }
 
+  const typeStyle = getTypeStyle(type)
   return (
     <View 
-      className={`inline-flex items-center justify-center rounded-4 font-normal border ${typeClasses[type]} ${sizeClasses[size]} ${className}`}
+      className={`inline-flex items-center justify-center rounded-4 font-normal border ${sizeClasses[size]} ${className}`}
+      style={typeStyle}
       {...props}
     >
       {children}

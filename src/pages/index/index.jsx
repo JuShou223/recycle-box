@@ -5,8 +5,11 @@ import Card from "../../components/Card";
 import Avatar from "../../components/Avatar";
 import Taro from "@tarojs/taro";
 import Platform from "../../utils/platform";
+import { useTheme } from "../../hooks/useTheme";
 
 function Index() {
+  const { themeStyles } = useTheme();
+
   const [userInfo, setUserInfo] = useState({
     nickname: "环保达人",
     avatar:
@@ -171,7 +174,7 @@ function Index() {
         <Button
           type="primary"
           size="large"
-          className="w-full h-56 rounded-full text-18 font-bold bg-green-500 shadow-lg"
+          className="w-full h-56 rounded-full text-18 font-bold shadow-lg"
           onClick={handleScanCode}
         >
           📱 立即扫码回收

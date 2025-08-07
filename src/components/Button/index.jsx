@@ -1,5 +1,6 @@
 import React from 'react'
 import { View } from '@tarojs/components'
+import { useTheme } from '../../hooks/useTheme'
 
 function Button({ 
   children, 
@@ -10,6 +11,8 @@ function Button({
   onClick,
   ...props 
 }) {
+  const { themeStyles } = useTheme()
+
   const handleClick = (e) => {
     if (disabled) return
     onClick && onClick(e)
@@ -17,12 +20,19 @@ function Button({
 
   const baseClasses = 'inline-flex items-center justify-center rounded-6 font-medium text-center'
   
-  const typeClasses = {
-    default: 'bg-white text-gray-800 border border-gray-300',
-    primary: 'bg-green-500 text-white border border-green-500',
-    success: 'bg-green-500 text-white border border-green-500',
-    warning: 'bg-yellow-500 text-white border border-yellow-500',
-    danger: 'bg-red-500 text-white border border-red-500'
+  const getTypeStyle = (type) => {
+    switch (type) {
+      case 'primary':
+        return { ...themeStyles.primary, color: '#ffffff' }
+      case 'success':
+        return { ...themeStyles.success, color: '#ffffff' }
+      case 'warning':
+        return { ...themeStyles.warning, color: '#ffffff' }
+      case 'danger':
+        return { ...themeStyles.error, color: '#ffffff' }
+      default:
+        return { backgroundColor: '#ffffff', color: '#333333', borderColor: '#d9d9d9' }
+    }
   }
   
   const sizeClasses = {
@@ -31,11 +41,13 @@ function Button({
     large: 'px-24 py-12 text-16 h-48 rounded-8'
   }
   
-  const disabledClasses = disabled ? 'opacity-50' : ''
+  const typeStyle = getTypeStyle(type)
+  const disabledStyle = disabled ? { opacity: 0.5 } : {}
   
   return (
     <View 
-      className={`${baseClasses} ${typeClasses[type]} ${sizeClasses[size]} ${disabledClasses} ${className}`}
+      className={`${baseClasses} ${sizeClasses[size]} border ${className}`}
+      style={{ ...typeStyle, ...disabledStyle }}
       onClick={handleClick}
       {...props}
     >

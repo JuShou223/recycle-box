@@ -165,17 +165,18 @@ export const setTheme = (themeName) => {
 export const applyTheme = (themeName) => {
   const theme = themes[themeName] || themes[defaultTheme]
   
-  // 检查是否为H5环境
+  // 小程序环境下直接返回主题对象，不设置CSS变量
   if (typeof document !== 'undefined' && document.documentElement) {
+    // H5环境才设置CSS变量
     const root = document.documentElement
-    
-    // 设置CSS变量
     Object.keys(theme).forEach(key => {
       if (key !== 'name') {
         root.style.setProperty(`--theme-${key}`, theme[key])
       }
     })
   }
+  
+  return theme
 }
 
 // 获取主题颜色
