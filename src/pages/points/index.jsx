@@ -121,21 +121,21 @@ function Points() {
   return (
     <View className="min-h-screen bg-gray-50">
       {/* 积分概览 */}
-      <View className="m-5 rounded-2xl bg-gradient-to-br from-green-500 to-green-600 text-white p-5">
-        <View className="flex justify-between items-start mb-5">
+      <View className="m-20 rounded-20 bg-green-500 text-white p-20">
+        <View className="flex justify-between items-start mb-20">
           <View>
-            <Text className="text-4xl font-bold text-white block leading-none">{userPoints.total}</Text>
-            <Text className="text-sm text-green-100">总积分</Text>
+            <Text className="text-36 font-bold text-white block leading-none">{userPoints.total}</Text>
+            <Text className="text-14 text-green-100">总积分</Text>
           </View>
-          <View className="text-right flex-1 ml-5">
-            <Text className="text-base font-bold text-white block mb-2">Lv.{userPoints.level}</Text>
+          <View className="text-right flex-1 ml-20">
+            <Text className="text-16 font-bold text-white block mb-8">Lv.{userPoints.level}</Text>
             <Progress 
               percentage={levelProgress}
               strokeWidth={6}
               strokeColor='#52c41a'
-              className="mb-1"
+              className="mb-4"
             />
-            <Text className="text-xs text-green-100">
+            <Text className="text-12 text-green-100">
               距离Lv.{userPoints.level + 1}还需{userPoints.nextLevelPoints - userPoints.total}积分
             </Text>
           </View>
@@ -143,17 +143,17 @@ function Points() {
         
         <View className="flex justify-between items-center">
           <View className="text-center">
-            <Text className="text-lg font-bold text-white block mb-1">{userPoints.available}</Text>
-            <Text className="text-xs text-green-100">可用积分</Text>
+            <Text className="text-18 font-bold text-white block mb-4">{userPoints.available}</Text>
+            <Text className="text-12 text-green-100">可用积分</Text>
           </View>
           <View className="text-center">
-            <Text className="text-lg font-bold text-white block mb-1">{userPoints.frozen}</Text>
-            <Text className="text-xs text-green-100">冻结积分</Text>
+            <Text className="text-18 font-bold text-white block mb-4">{userPoints.frozen}</Text>
+            <Text className="text-12 text-green-100">冻结积分</Text>
           </View>
           <View className="text-center">
             <Button 
               size='small' 
-              className="bg-white text-green-600 px-3 py-1 rounded-full text-xs font-medium"
+              className="bg-white text-green-600 px-12 py-4 rounded-full text-12 font-medium"
               onClick={handleViewRanking}
             >
               查看排行
@@ -163,22 +163,22 @@ function Points() {
       </View>
 
       {/* 标签页 */}
-      <View className="mx-5">
+      <View className="mx-20">
       <Tabs value={activeTab} onChange={setActiveTab}>
         <TabPane title='积分记录'>
           <View>
             {pointsHistory.map((record) => (
-              <View key={record.id} className="bg-white rounded-lg p-4 mb-3 flex justify-between items-center">
+              <View key={record.id} className="bg-white rounded-8 p-16 mb-12 flex justify-between items-center">
                 <View className="flex-1">
-                  <Text className="text-sm font-bold text-gray-800 block mb-1">{record.reason}</Text>
-                  <Text className="text-xs text-gray-600 block mb-0.5">{record.time}</Text>
+                  <Text className="text-14 font-bold text-gray-800 block mb-4">{record.reason}</Text>
+                  <Text className="text-12 text-gray-600 block mb-2">{record.time}</Text>
                   {record.weight && (
-                    <Text className="text-xs text-gray-500">重量: {record.weight}</Text>
+                    <Text className="text-12 text-gray-500">重量: {record.weight}</Text>
                   )}
                 </View>
                 <View className="text-right">
                   <Text 
-                    className={`text-base font-bold block mb-1 ${record.type === 'earn' ? 'text-green-600' : 'text-red-500'}`}
+                    className={`text-16 font-bold block mb-4 ${record.type === 'earn' ? 'text-green-600' : 'text-red-500'}`}
                   >
                     {record.type === 'earn' ? '+' : ''}{record.amount}
                   </Text>
@@ -195,23 +195,23 @@ function Points() {
         </TabPane>
         
         <TabPane title='积分兑换'>
-          <View className="grid grid-cols-2 gap-3">
+          <View className="grid grid-cols-2 gap-12">
             {exchangeItems.map((item) => (
-              <View key={item.id} className="bg-white rounded-lg overflow-hidden">
+              <View key={item.id} className="bg-white rounded-8 overflow-hidden">
                 <View 
-                  className="w-full h-30 bg-cover bg-center bg-gray-200"
+                  className="w-full h-120 bg-cover bg-center bg-gray-200"
                   style={{ backgroundImage: `url(${item.image})` }}
                 />
-                <View className="p-3">
-                  <Text className="text-xs font-bold text-gray-800 block mb-1 leading-tight">{item.name}</Text>
-                  <Text className="text-sm text-green-600 font-bold block mb-0.5">{item.points}积分</Text>
-                  <Text className="text-xs text-gray-600 block mb-2">库存: {item.stock}</Text>
+                <View className="p-12">
+                  <Text className="text-12 font-bold text-gray-800 block mb-4 leading-tight">{item.name}</Text>
+                  <Text className="text-14 text-green-600 font-bold block mb-2">{item.points}积分</Text>
+                  <Text className="text-12 text-gray-600 block mb-8">库存: {item.stock}</Text>
                   <Button 
                     size='small'
                     type={userPoints.available >= item.points ? 'primary' : 'default'}
                     disabled={userPoints.available < item.points || item.stock === 0}
                     onClick={() => handleExchange(item)}
-                    className="w-full h-8 text-xs"
+                    className="w-full h-32 text-12"
                   >
                     {userPoints.available >= item.points ? '立即兑换' : '积分不足'}
                   </Button>

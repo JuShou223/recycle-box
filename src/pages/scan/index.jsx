@@ -129,29 +129,29 @@ function Scan() {
   }
 
   return (
-    <View className="min-h-screen bg-gray-50 p-5">
+    <View className="min-h-screen bg-gray-50 p-20">
       {/* 回收箱信息 */}
-      <View className="bg-white rounded-xl p-4 mb-5 shadow-sm">
-        <Text className="text-lg font-bold text-gray-800 block mb-2">{recycleBox.name}</Text>
-        <Text className="text-sm text-gray-600 block mb-1">📍 {recycleBox.location}</Text>
-        <Text className="text-xs text-gray-500 block mb-3">设备ID: {recycleBox.id}</Text>
-        <View className="flex items-center flex-wrap gap-2">
-          <Text className="text-xs text-gray-600">支持类型:</Text>
+      <View className="bg-white rounded-12 p-16 mb-20 shadow-sm">
+        <Text className="text-18 font-bold text-gray-800 block mb-8">{recycleBox.name}</Text>
+        <Text className="text-14 text-gray-600 block mb-4">📍 {recycleBox.location}</Text>
+        <Text className="text-12 text-gray-500 block mb-12">设备ID: {recycleBox.id}</Text>
+        <View className="flex items-center flex-wrap gap-8">
+          <Text className="text-12 text-gray-600">支持类型:</Text>
           {recycleBox.types.map((type, index) => (
-            <Text key={index} className="bg-blue-100 text-blue-600 text-xs px-2 py-1 rounded">{type}</Text>
+            <Text key={index} className="bg-blue-100 text-blue-600 text-12 px-8 py-4 rounded-4">{type}</Text>
           ))}
         </View>
       </View>
 
       {/* 操作状态 */}
-      <View className="bg-white rounded-xl p-5 mb-5 shadow-sm">
+      <View className="bg-white rounded-12 p-20 mb-20 shadow-sm">
         {!isOpening && !isWeighing && weight === 0 && (
-          <View className="text-center py-5">
-            <Text className="text-base font-bold text-gray-800 block mb-2">准备投递</Text>
-            <Text className="text-sm text-gray-600 block mb-5">请确认垃圾分类正确后点击开箱</Text>
+          <View className="text-center py-20">
+            <Text className="text-16 font-bold text-gray-800 block mb-8">准备投递</Text>
+            <Text className="text-14 text-gray-600 block mb-20">请确认垃圾分类正确后点击开箱</Text>
             <Button 
               type='primary' 
-              className="w-50 h-12 rounded-3xl text-base font-bold"
+              className="w-200 h-48 rounded-full text-16 font-bold"
               onClick={handleOpenBox}
             >
               🔓 开箱投递
@@ -160,41 +160,41 @@ function Scan() {
         )}
 
         {isOpening && (
-          <View className="text-center py-8">
-            <Text className="text-base font-bold text-green-600 block mb-5">正在开箱...</Text>
+          <View className="text-center py-32">
+            <Text className="text-16 font-bold text-green-600 block mb-20">正在开箱...</Text>
             <Progress 
               percentage={100}
               strokeWidth={8}
               strokeColor='#52c41a'
             />
-            <Text className="text-sm text-gray-600 mt-5">请稍候，回收箱正在开启</Text>
+            <Text className="text-14 text-gray-600 mt-20">请稍候，回收箱正在开启</Text>
           </View>
         )}
 
         {isWeighing && (
-          <View className="text-center py-8">
-            <Text className="text-base font-bold text-blue-600 block mb-4">正在称重...</Text>
-            <Text className="text-4xl font-bold text-green-600 block mb-4">{weight} kg</Text>
-            <Text className="text-sm text-gray-600">请投入垃圾，系统正在自动称重</Text>
+          <View className="text-center py-32">
+            <Text className="text-16 font-bold text-blue-600 block mb-16">正在称重...</Text>
+            <Text className="text-36 font-bold text-green-600 block mb-16">{weight} kg</Text>
+            <Text className="text-14 text-gray-600">请投入垃圾，系统正在自动称重</Text>
           </View>
         )}
 
         {!isWeighing && weight > 0 && !showResult && (
-          <View className="text-center py-8">
-            <Text className="text-base font-bold text-gray-800 block mb-4">称重完成</Text>
-            <Text className="text-3xl font-bold text-green-600 block mb-2">{weight} kg</Text>
-            <Text className="text-base text-yellow-600 font-bold">预计获得 {points} 积分</Text>
+          <View className="text-center py-32">
+            <Text className="text-16 font-bold text-gray-800 block mb-16">称重完成</Text>
+            <Text className="text-30 font-bold text-green-600 block mb-8">{weight} kg</Text>
+            <Text className="text-16 text-yellow-600 font-bold">预计获得 {points} 积分</Text>
           </View>
         )}
       </View>
 
       {/* 垃圾分类提示 */}
-      <View className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl p-4 border border-yellow-200">
-        <Text className="text-sm font-bold text-yellow-700 block mb-3">💡 分类提示</Text>
+      <View className="bg-yellow-50 rounded-12 p-16 border border-yellow-200">
+        <Text className="text-14 font-bold text-yellow-700 block mb-12">💡 分类提示</Text>
         <View>
-          <Text className="text-xs text-yellow-800 block mb-1.5 leading-relaxed">📄 纸类: 报纸、杂志、纸箱、办公用纸</Text>
-          <Text className="text-xs text-yellow-800 block mb-1.5 leading-relaxed">🥤 塑料: 塑料瓶、塑料袋、塑料盒</Text>
-          <Text className="text-xs text-yellow-800 leading-relaxed">🥫 金属: 易拉罐、金属盒、废铁</Text>
+          <Text className="text-12 text-yellow-800 block mb-6 leading-relaxed">📄 纸类: 报纸、杂志、纸箱、办公用纸</Text>
+          <Text className="text-12 text-yellow-800 block mb-6 leading-relaxed">🥤 塑料: 塑料瓶、塑料袋、塑料盒</Text>
+          <Text className="text-12 text-yellow-800 leading-relaxed">🥫 金属: 易拉罐、金属盒、废铁</Text>
         </View>
       </View>
 
@@ -205,10 +205,10 @@ function Scan() {
         onConfirm={handleConfirmRecycle}
         onCancel={() => setShowResult(false)}
       >
-        <View className="text-center py-5">
-          <Text className="text-base font-bold text-green-600 block mb-2">重量: {weight} kg</Text>
-          <Text className="text-base font-bold text-yellow-600 block mb-4">获得积分: {points} 分</Text>
-          <Text className="text-sm text-gray-600">感谢您为环保做出的贡献！</Text>
+        <View className="text-center py-20">
+          <Text className="text-16 font-bold text-green-600 block mb-8">重量: {weight} kg</Text>
+          <Text className="text-16 font-bold text-yellow-600 block mb-16">获得积分: {points} 分</Text>
+          <Text className="text-14 text-gray-600">感谢您为环保做出的贡献！</Text>
         </View>
       </Modal>
     </View>

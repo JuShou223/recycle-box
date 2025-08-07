@@ -100,20 +100,20 @@ function Recycle() {
   }
 
   return (
-    <View className="min-h-screen bg-gray-50 p-5">
+    <View className="min-h-screen bg-gray-50 p-20">
       {/* 快速操作 */}
-      <View className="bg-white rounded-xl p-4 mb-5 shadow-sm">
-        <View className="flex gap-3">
+      <View className="bg-white rounded-12 p-16 mb-20 shadow-sm">
+        <View className="flex gap-12">
           <Button 
             type='primary' 
-            className="flex-1 h-12 rounded-3xl font-bold"
+            className="flex-1 h-48 rounded-full font-bold"
             onClick={handleScanCode}
           >
             📱 扫码回收
           </Button>
           <Button 
             type='success'
-            className="flex-1 h-12 rounded-3xl font-bold"
+            className="flex-1 h-48 rounded-full font-bold"
             onClick={handleViewMap}
           >
             📍 查看地图
@@ -122,17 +122,17 @@ function Recycle() {
       </View>
 
       {/* 附近回收箱 */}
-      <View className="bg-white rounded-xl p-4 mb-5 shadow-sm">
-        <Text className="text-base font-bold text-gray-800 block mb-4">附近回收箱</Text>
+      <View className="bg-white rounded-12 p-16 mb-20 shadow-sm">
+        <Text className="text-16 font-bold text-gray-800 block mb-16">附近回收箱</Text>
         {nearbyBoxes.map((box) => (
           <View 
             key={box.id}
-            className="bg-gray-50 rounded-lg p-4 mb-3 last:mb-0 active:scale-98 transition-transform"
+            className="bg-gray-50 rounded-8 p-16 mb-12"
             onClick={() => handleBoxSelect(box)}
           >
             <View>
-              <View className="flex justify-between items-center mb-2">
-                <Text className="text-sm font-bold text-gray-800">{box.name}</Text>
+              <View className="flex justify-between items-center mb-8">
+                <Text className="text-14 font-bold text-gray-800">{box.name}</Text>
                 <Tag 
                   type={box.status === 'available' ? 'success' : 'danger'}
                   size='small'
@@ -140,19 +140,19 @@ function Recycle() {
                   {box.status === 'available' ? '可用' : '已满'}
                 </Tag>
               </View>
-              <Text className="text-xs text-gray-600 block mb-2">📍 距离 {box.distance}</Text>
-              <View className="flex gap-1 mb-2">
+              <Text className="text-12 text-gray-600 block mb-8">📍 距离 {box.distance}</Text>
+              <View className="flex gap-4 mb-8">
                 {box.types.map((type, index) => (
-                  <Text key={index} className="bg-blue-100 text-blue-600 text-xs px-2 py-1 rounded">
+                  <Text key={index} className="bg-blue-100 text-blue-600 text-12 px-8 py-4 rounded-4">
                     {type}
                   </Text>
                 ))}
               </View>
-              <View className="flex items-center gap-2">
-                <Text className="text-xs text-gray-600 min-w-16">容量: {box.capacity}%</Text>
-                <View className="flex-1 h-1 bg-gray-200 rounded-full overflow-hidden">
+              <View className="flex items-center gap-8">
+                <Text className="text-12 text-gray-600 min-w-64">容量: {box.capacity}%</Text>
+                <View className="flex-1 h-4 bg-gray-200 rounded-full overflow-hidden">
                   <View 
-                    className="h-full bg-gradient-to-r from-green-400 via-yellow-400 to-red-400 transition-all duration-300"
+                    className="h-full bg-green-400"
                     style={{ width: `${box.capacity}%` }}
                   />
                 </View>
@@ -163,24 +163,24 @@ function Recycle() {
       </View>
 
       {/* 垃圾分类指引 */}
-      <View className="bg-white rounded-xl p-4 shadow-sm">
-        <Text className="text-base font-bold text-gray-800 block mb-4">垃圾分类指引</Text>
-        <View className="grid grid-cols-2 gap-3">
+      <View className="bg-white rounded-12 p-16 shadow-sm">
+        <Text className="text-16 font-bold text-gray-800 block mb-16">垃圾分类指引</Text>
+        <View className="grid grid-cols-2 gap-12">
           {wasteCategories.map((category, index) => (
-            <View key={index} className="bg-white border border-gray-200 rounded-lg p-3">
-              <View className="flex items-center mb-2">
-                <Text className="text-xl mr-2">{category.icon}</Text>
+            <View key={index} className="bg-white border border-gray-200 rounded-8 p-12">
+              <View className="flex items-center mb-8">
+                <Text className="text-20 mr-8">{category.icon}</Text>
                 <Text 
-                  className="text-sm font-bold"
+                  className="text-14 font-bold"
                   style={{ color: category.color }}
                 >
                   {category.type}
                 </Text>
               </View>
-              <Text className="text-xs text-green-600 font-bold block mb-2">{category.points}</Text>
+              <Text className="text-12 text-green-600 font-bold block mb-8">{category.points}</Text>
               <View>
                 {category.examples.map((example, idx) => (
-                  <Text key={idx} className="text-xs text-gray-600 bg-gray-100 px-1.5 py-0.5 rounded mr-1 mb-1 inline-block">
+                  <Text key={idx} className="text-12 text-gray-600 bg-gray-100 px-6 py-2 rounded-4 mr-4 mb-4 inline-block">
                     {example}
                   </Text>
                 ))}

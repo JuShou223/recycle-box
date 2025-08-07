@@ -197,25 +197,25 @@ function Exchange() {
     <View key={item.id} className="flex bg-white rounded-xl overflow-hidden mb-4 shadow-sm">
       <Image 
         src={item.image}
-        className="w-25 h-25 flex-shrink-0 bg-gray-200"
+        className="w-100 h-100 flex-shrink-0 bg-gray-200"
         mode='aspectFill'
       />
-      <View className="flex-1 p-3 flex flex-col">
-        <Text className="text-sm font-bold text-gray-800 block mb-1 leading-tight">{item.name}</Text>
-        <Text className="text-xs text-gray-600 block mb-2 leading-relaxed">{item.description}</Text>
+      <View className="flex-1 p-12 flex flex-col">
+        <Text className="text-14 font-bold text-gray-800 block mb-4 leading-tight">{item.name}</Text>
+        <Text className="text-12 text-gray-600 block mb-8 leading-relaxed">{item.description}</Text>
         
         <View className="flex-1 flex flex-col justify-between">
-          <View className="flex items-baseline gap-2 mb-2">
-            <Text className="text-base font-bold text-yellow-600">{item.points}积分</Text>
+          <View className="flex items-baseline gap-8 mb-8">
+            <Text className="text-16 font-bold text-yellow-600">{item.points}积分</Text>
             {item.originalPrice && (
-              <Text className="text-xs text-gray-500 line-through">原价¥{item.originalPrice}</Text>
+              <Text className="text-12 text-gray-500 line-through">原价¥{item.originalPrice}</Text>
             )}
             {item.amount && (
-              <Text className="text-sm font-bold text-red-500">¥{item.amount}</Text>
+              <Text className="text-14 font-bold text-red-500">¥{item.amount}</Text>
             )}
           </View>
           
-          <View className="flex gap-1 mb-2 flex-wrap">
+          <View className="flex gap-4 mb-8 flex-wrap">
             {item.validDays && (
               <Tag size='small' type='warning'>
                 {item.validDays}天有效
@@ -237,7 +237,7 @@ function Exchange() {
         
         <Button 
           size='small'
-          className={`self-end min-w-20 h-8 text-xs ${userPoints >= item.points && item.stock > 0 ? 'bg-green-500 text-white' : 'bg-gray-100 text-gray-400'}`}
+          className={`self-end min-w-80 h-32 text-12 ${userPoints >= item.points && item.stock > 0 ? 'bg-green-500 text-white' : 'bg-gray-100 text-gray-400'}`}
           disabled={userPoints < item.points || item.stock === 0}
           onClick={() => handleExchange(item, type)}
         >
@@ -253,14 +253,14 @@ function Exchange() {
   return (
     <View className="min-h-screen bg-gray-50">
       {/* 积分余额 */}
-      <View className="m-5 rounded-2xl bg-gradient-to-br from-yellow-500 to-orange-500 text-white text-center p-5">
-        <Text className="text-sm text-yellow-100 block mb-2">我的积分</Text>
-        <Text className="text-3xl font-bold text-white block mb-1">{userPoints}</Text>
-        <Text className="text-xs text-yellow-100">积分可兑换各种好礼</Text>
+      <View className="m-20 rounded-20 bg-yellow-500 text-white text-center p-20">
+        <Text className="text-14 text-yellow-100 block mb-8">我的积分</Text>
+        <Text className="text-30 font-bold text-white block mb-4">{userPoints}</Text>
+        <Text className="text-12 text-yellow-100">积分可兑换各种好礼</Text>
       </View>
 
       {/* 兑换分类 */}
-      <View className="mx-5">
+      <View className="mx-20">
       <Tabs value={activeTab} onChange={setActiveTab}>
         <TabPane title='优惠券'>
           <View>
@@ -292,3 +292,4 @@ function Exchange() {
 }
 
 export default Exchange
+    <View key={item.id} className="flex bg-white rounded-12 overflow-hidden mb-16 shadow-sm">

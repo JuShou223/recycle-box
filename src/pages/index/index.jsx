@@ -95,23 +95,23 @@ function Index() {
   };
 
   return (
-    <View className={`min-h-screen bg-gray-50 p-5 ${Platform.getStyleClass()}`}>
+    <View className={`min-h-screen bg-gray-50 p-20 ${Platform.getStyleClass()}`}>
       {/* 用户信息卡片 */}
-      <View className="bg-white rounded-2xl p-5 mb-5 shadow-sm">
+      <View className="bg-white rounded-20 p-20 mb-20 shadow-sm">
         <View className="flex items-center">
-          <Avatar size="large" src={userInfo.avatar} className="mr-4" />
+          <Avatar size="large" src={userInfo.avatar} className="mr-16" />
           <View className="flex-1">
-            <Text className="text-xl font-bold text-gray-800 mb-1">
+            <Text className="text-20 font-bold text-gray-800 mb-4">
               {userInfo.nickname}
             </Text>
-            <Text className="text-sm text-green-600 mb-2">
+            <Text className="text-14 text-green-600 mb-8">
               Lv.{userInfo.level} 环保达人
             </Text>
-            <View className="flex gap-4">
-              <Text className="text-xs text-gray-600">
+            <View className="flex gap-16">
+              <Text className="text-12 text-gray-600">
                 积分: {userInfo.points}
               </Text>
-              <Text className="text-xs text-gray-600">
+              <Text className="text-12 text-gray-600">
                 回收: {userInfo.recycleCount}次
               </Text>
             </View>
@@ -120,58 +120,58 @@ function Index() {
       </View>
 
       {/* 今日数据 */}
-      <View className="bg-white rounded-2xl p-5 mb-5 shadow-sm">
-        <Text className="text-base font-bold text-gray-800 mb-4">
+      <View className="bg-white rounded-20 p-20 mb-20 shadow-sm">
+        <Text className="text-16 font-bold text-gray-800 mb-16">
           今日环保数据
         </Text>
         <View className="flex justify-around">
           <View className="text-center">
-            <Text className="text-2xl font-bold text-green-600 block mb-1">
+            <Text className="text-24 font-bold text-green-600 block mb-4">
               {todayStats.recycled}
             </Text>
-            <Text className="text-xs text-gray-600">回收次数</Text>
+            <Text className="text-12 text-gray-600">回收次数</Text>
           </View>
           <View className="text-center">
-            <Text className="text-2xl font-bold text-green-600 block mb-1">
+            <Text className="text-24 font-bold text-green-600 block mb-4">
               {todayStats.points}
             </Text>
-            <Text className="text-xs text-gray-600">获得积分</Text>
+            <Text className="text-12 text-gray-600">获得积分</Text>
           </View>
           <View className="text-center">
-            <Text className="text-2xl font-bold text-green-600 block mb-1">
+            <Text className="text-24 font-bold text-green-600 block mb-4">
               {todayStats.co2Saved}kg
             </Text>
-            <Text className="text-xs text-gray-600">减少碳排放</Text>
+            <Text className="text-12 text-gray-600">减少碳排放</Text>
           </View>
         </View>
       </View>
 
       {/* 快速操作 */}
-      <View className="bg-white rounded-2xl p-5 mb-5 shadow-sm">
-        <Text className="text-base font-bold text-gray-800 mb-4">快速操作</Text>
-        <View className="grid grid-cols-2 gap-4">
+      <View className="bg-white rounded-20 p-20 mb-20 shadow-sm">
+        <Text className="text-16 font-bold text-gray-800 mb-16">快速操作</Text>
+        <View className="grid grid-cols-2 gap-16">
           {quickActions.map((action, index) => (
             <View
               key={index}
-              className="bg-gray-50 rounded-xl p-5 text-center active:scale-95 transition-transform"
+              className="bg-gray-50 rounded-12 p-20 text-center"
               onClick={() => handleQuickAction(action.path)}
             >
-              <Text className="text-3xl block mb-2">{action.icon}</Text>
-              <Text className="text-sm font-bold text-gray-800 block mb-1">
+              <Text className="text-30 block mb-8">{action.icon}</Text>
+              <Text className="text-14 font-bold text-gray-800 block mb-4">
                 {action.title}
               </Text>
-              <Text className="text-xs text-gray-600">{action.desc}</Text>
+              <Text className="text-12 text-gray-600">{action.desc}</Text>
             </View>
           ))}
         </View>
       </View>
 
       {/* 扫码按钮 */}
-      <View className="my-5">
+      <View className="my-20">
         <Button
           type="primary"
           size="large"
-          className="w-full h-14 rounded-3xl text-lg font-bold bg-gradient-to-r from-green-500 to-green-600 shadow-lg"
+          className="w-full h-56 rounded-full text-18 font-bold bg-green-500 shadow-lg"
           onClick={handleScanCode}
         >
           📱 立即扫码回收
@@ -179,11 +179,11 @@ function Index() {
       </View>
 
       {/* 环保提示 */}
-      <View className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-5 border border-yellow-200">
-        <Text className="text-sm font-bold text-yellow-700 block mb-2">
+      <View className="bg-yellow-50 rounded-20 p-20 border border-yellow-200">
+        <Text className="text-14 font-bold text-yellow-700 block mb-8">
           💡 环保小贴士
         </Text>
-        <Text className="text-xs text-gray-600 leading-relaxed">
+        <Text className="text-12 text-gray-600 leading-relaxed">
           每回收1kg废纸可以减少3.3kg的CO₂排放，相当于种植0.1棵树！
         </Text>
       </View>

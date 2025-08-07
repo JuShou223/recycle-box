@@ -123,20 +123,20 @@ function Messages() {
       <View key={message.id} className={`bg-white rounded-lg p-4 mb-3 relative transition-all ${!message.read ? 'border-l-4 border-green-500 bg-green-50' : ''}`}>
         <View className="mb-2">
           <View className="flex items-center flex-1">
-            <Text className="text-base mr-2">{getMessageIcon(message.type)}</Text>
-            <Text className="text-sm font-bold text-gray-800 flex-1">{message.title}</Text>
-            {!message.read && <View className="w-2 h-2 bg-red-500 rounded-full ml-2" />}
+            <Text className="text-16 mr-8">{getMessageIcon(message.type)}</Text>
+            <Text className="text-14 font-bold text-gray-800 flex-1">{message.title}</Text>
+            {!message.read && <View className="w-8 h-8 bg-red-500 rounded-full ml-8" />}
           </View>
           <Tag 
             type={getMessageTypeColor(message.type)}
             size='small'
-            className="mt-2"
+            className="mt-8"
           >
             {message.type}
           </Tag>
         </View>
-        <Text className="text-xs text-gray-600 leading-relaxed block mb-2">{message.content}</Text>
-        <Text className="text-xs text-gray-500">{message.time}</Text>
+        <Text className="text-12 text-gray-600 leading-relaxed block mb-8">{message.content}</Text>
+        <Text className="text-12 text-gray-500">{message.time}</Text>
       </View>
     ))
   }
@@ -154,11 +154,11 @@ function Messages() {
   return (
     <View className="min-h-screen bg-gray-50">
       {/* 操作按钮 */}
-      <View className="flex justify-end gap-3 p-4 bg-white border-b border-gray-100">
-        <Button size='small' className="px-3 py-1 text-xs" onClick={handleMarkAllRead}>
+      <View className="flex justify-end gap-12 p-16 bg-white border-b border-gray-100">
+        <Button size='small' className="px-12 py-4 text-12" onClick={handleMarkAllRead}>
           全部已读
         </Button>
-        <Button size='small' className="px-3 py-1 text-xs bg-gray-100 text-gray-600" onClick={handleClearAll}>
+        <Button size='small' className="px-12 py-4 text-12 bg-gray-100 text-gray-600" onClick={handleClearAll}>
           清空消息
         </Button>
       </View>
@@ -166,19 +166,19 @@ function Messages() {
       {/* 消息标签页 */}
       <Tabs value={activeTab} onChange={setActiveTab}>
         <TabPane title={`回收记录(${recycleMessages.filter(m => !m.read).length})`}>
-          <View className="p-5">
+          <View className="p-20">
             {renderMessageList(recycleMessages)}
           </View>
         </TabPane>
         
         <TabPane title={`活动通知(${activityMessages.filter(m => !m.read).length})`}>
-          <View className="p-5">
+          <View className="p-20">
             {renderMessageList(activityMessages)}
           </View>
         </TabPane>
         
         <TabPane title={`系统消息(${systemMessages.filter(m => !m.read).length})`}>
-          <View className="p-5">
+          <View className="p-20">
             {renderMessageList(systemMessages)}
           </View>
         </TabPane>
@@ -188,3 +188,5 @@ function Messages() {
 }
 
 export default Messages
+      <View key={message.id} className={`bg-white rounded-8 p-16 mb-12 relative ${!message.read ? 'border-l-4 border-green-500 bg-green-50' : ''}`}>
+        <View className="mb-8">

@@ -144,14 +144,14 @@ function MapPage() {
       />
 
       {/* 回收箱列表 */}
-      <View className="max-h-96 overflow-y-auto bg-white p-4">
-        <Text className="text-base font-bold text-gray-800 block mb-3">附近回收箱 ({recycleBoxes.length}个)</Text>
+      <View className="max-h-384 overflow-y-auto bg-white p-16">
+        <Text className="text-16 font-bold text-gray-800 block mb-12">附近回收箱 ({recycleBoxes.length}个)</Text>
         {recycleBoxes.map((box) => (
-          <View key={box.id} className="bg-gray-50 rounded-lg p-3 mb-3 last:mb-0">
-            <View className="flex justify-between items-start mb-2">
+          <View key={box.id} className="bg-gray-50 rounded-8 p-12 mb-12">
+            <View className="flex justify-between items-start mb-8">
               <View>
-                <Text className="text-sm font-bold text-gray-800 block mb-1">{box.name}</Text>
-                <Text className="text-xs text-gray-600">📍 {box.distance}m</Text>
+                <Text className="text-14 font-bold text-gray-800 block mb-4">{box.name}</Text>
+                <Text className="text-12 text-gray-600">📍 {box.distance}m</Text>
               </View>
               <Tag 
                 type={box.status === 'available' ? 'success' : 'danger'}
@@ -161,26 +161,26 @@ function MapPage() {
               </Tag>
             </View>
             
-            <View className="flex justify-between items-center mb-3">
-              <View className="flex gap-1">
+            <View className="flex justify-between items-center mb-12">
+              <View className="flex gap-4">
                 {box.types.map((type, index) => (
-                  <Text key={index} className="bg-blue-100 text-blue-600 text-xs px-1.5 py-0.5 rounded">{type}</Text>
+                  <Text key={index} className="bg-blue-100 text-blue-600 text-12 px-6 py-2 rounded-4">{type}</Text>
                 ))}
               </View>
-              <Text className="text-xs text-gray-600">容量: {box.capacity}%</Text>
+              <Text className="text-12 text-gray-600">容量: {box.capacity}%</Text>
             </View>
             
-            <View className="flex gap-2 justify-end">
+            <View className="flex gap-8 justify-end">
               <Button 
                 size='small'
-                className="px-3 py-1 text-xs bg-gray-100 text-gray-600 rounded"
+                className="px-12 py-4 text-12 bg-gray-100 text-gray-600 rounded-4"
                 onClick={() => handleNavigate(box)}
               >
                 导航
               </Button>
               <Button 
                 size='small'
-                className={`px-3 py-1 text-xs rounded ${box.status === 'available' ? 'bg-green-500 text-white' : 'bg-gray-100 text-gray-400'}`}
+                className={`px-12 py-4 text-12 rounded-4 ${box.status === 'available' ? 'bg-green-500 text-white' : 'bg-gray-100 text-gray-400'}`}
                 disabled={box.status === 'full'}
                 onClick={() => handleUseBox(box)}
               >
@@ -194,30 +194,30 @@ function MapPage() {
       {/* 回收箱详情弹窗 */}
       {showBoxInfo && selectedBox && (
         <View className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setShowBoxInfo(false)}>
-          <View className="bg-white rounded-xl p-5 mx-5 max-w-80 w-full" onClick={(e) => e.stopPropagation()}>
-            <Text className="text-base font-bold text-gray-800 block mb-2">{selectedBox.name}</Text>
-            <Text className="text-sm text-gray-600 block mb-3">距离: {selectedBox.distance}m</Text>
-            <View className="flex items-center flex-wrap gap-1.5 mb-3">
-              <Text className="text-xs text-gray-600">支持类型:</Text>
+          <View className="bg-white rounded-12 p-20 mx-20 max-w-320 w-full" onClick={(e) => e.stopPropagation()}>
+            <Text className="text-16 font-bold text-gray-800 block mb-8">{selectedBox.name}</Text>
+            <Text className="text-14 text-gray-600 block mb-12">距离: {selectedBox.distance}m</Text>
+            <View className="flex items-center flex-wrap gap-6 mb-12">
+              <Text className="text-12 text-gray-600">支持类型:</Text>
               {selectedBox.types.map((type, index) => (
-                <Text key={index} className="bg-blue-100 text-blue-600 text-xs px-2 py-1 rounded">{type}</Text>
+                <Text key={index} className="bg-blue-100 text-blue-600 text-12 px-8 py-4 rounded-4">{type}</Text>
               ))}
             </View>
-            <Text className="text-xs text-gray-600 block mb-4">
+            <Text className="text-12 text-gray-600 block mb-16">
               容量: {selectedBox.capacity}% 
               {selectedBox.status === 'full' && ' (已满)'}
             </Text>
-            <View className="flex gap-3 justify-center">
+            <View className="flex gap-12 justify-center">
               <Button 
                 size='small'
-                className="px-4 py-2 text-xs bg-gray-100 text-gray-600 rounded"
+                className="px-16 py-8 text-12 bg-gray-100 text-gray-600 rounded-4"
                 onClick={() => handleNavigate(selectedBox)}
               >
                 导航前往
               </Button>
               <Button 
                 size='small'
-                className={`px-4 py-2 text-xs rounded ${selectedBox.status === 'available' ? 'bg-green-500 text-white' : 'bg-gray-100 text-gray-400'}`}
+                className={`px-16 py-8 text-12 rounded-4 ${selectedBox.status === 'available' ? 'bg-green-500 text-white' : 'bg-gray-100 text-gray-400'}`}
                 disabled={selectedBox.status === 'full'}
                 onClick={() => handleUseBox(selectedBox)}
               >
