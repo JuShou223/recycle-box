@@ -6,27 +6,38 @@
 /* 自定义组件样式 */
 @layer components {
   .btn-primary {
-    @apply bg-theme-primary text-white px-4 py-2 rounded-lg font-medium transition-colors;
-  }
-  
-  .btn-primary:hover {
-    @apply bg-theme-primary-light;
+    background-color: var(--theme-primary, #52c41a);
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 500;
   }
   
   .card {
-    @apply bg-theme-bg-light rounded-xl p-4 shadow-card;
+    background-color: var(--theme-backgroundLight, #ffffff);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   }
   
   .text-primary {
-    @apply text-theme-text;
+    color: var(--theme-text, #333333);
   }
   
   .text-secondary {
-    @apply text-theme-text-secondary;
+    color: var(--theme-textSecondary, #666666);
   }
   
   .text-tertiary {
-    @apply text-theme-text-tertiary;
+    color: var(--theme-textTertiary, #999999);
+  }
+
+  .bg-theme-primary {
+    background-color: var(--theme-primary, #52c41a);
+  }
+
+  .text-theme-primary {
+    color: var(--theme-primary, #52c41a);
   }
 }
 

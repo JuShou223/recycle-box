@@ -1,31 +1,50 @@
 import { useState, useEffect } from 'react'
 import themeManager from '../utils/theme'
+import Platform from '../utils/platform'
 
 /**
- * 主题Hook
+ * 跨平台主题Hook
  */
 export function useTheme() {
   const [currentTheme, setCurrentTheme] = useState(themeManager.getCurrentTheme())
   const [themeColors, setThemeColors] = useState(themeManager.getThemeColors())
   const [themeStyles, setThemeStyles] = useState(themeManager.getThemeStyles())
+  const isH5 = Platform.isH5()
 
   useEffect(() => {
-    // 监听主题变更
+    // 初始化主题
+    themeManager.init()
+
+    // 小程序环境监听主题变更事件
     const handleThemeChange = ({ theme, colors }) => {
       setCurrentTheme(theme)
       setThemeColors(colors)
       setThemeStyles(themeManager.getThemeStyles())
     }
 
-    themeManager.onThemeChange(handleThemeChange)
+    if (!isH5) {
+      // 只在小程序环境监听事件
+      themeManager.onThemeChange(handleThemeChange)
+    }
 
     return () => {
-      themeManager.offThemeChange(handleThemeChange)
+      if (!isH5) {
+        themeManager.offThemeChange(handleThemeChange)
+      }
     }
-  }, [])
+  }, [isH5])
 
   const changeTheme = (themeName) => {
-    return themeManager.setTheme(themeName)
+    const success = themeManager.setTheme(themeName)
+    
+    if (success && isH5) {
+      // H5环境需要手动更新状态
+      setCurrentTheme(themeName)
+      setThemeColors(themeManager.getThemeColors())
+      setThemeStyles(themeManager.getThemeStyles())
+    }
+    
+    return success
   }
 
   const getColor = (colorName) => {
@@ -37,6 +56,7 @@ export function useTheme() {
     themeColors,
     themeStyles,
     changeTheme,
-    getColor
+    getColor,
+    isH5
   }
 }

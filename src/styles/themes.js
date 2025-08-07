@@ -165,15 +165,23 @@ export const setTheme = (themeName) => {
 export const applyTheme = (themeName) => {
   const theme = themes[themeName] || themes[defaultTheme]
   
-  // 小程序环境下直接返回主题对象，不设置CSS变量
+  // H5环境设置CSS变量，小程序环境直接返回主题对象
   if (typeof document !== 'undefined' && document.documentElement) {
-    // H5环境才设置CSS变量
+    // H5环境：设置CSS变量
     const root = document.documentElement
     Object.keys(theme).forEach(key => {
       if (key !== 'name') {
         root.style.setProperty(`--theme-${key}`, theme[key])
       }
     })
+  } else {
+    // 小程序环境：通过事件通知主题变更
+    if (typeof Taro !== 'undefined' && Taro.eventCenter) {
+      Taro.eventCenter.trigger('themeChange', {
+        theme: themeName,
+        colors: theme
+      })
+    }
   }
   
   return theme

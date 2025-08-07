@@ -1,14 +1,16 @@
 import Taro from '@tarojs/taro'
 import { themes, defaultTheme } from '../styles/themes'
 import Storage from './storage'
+import Platform from './platform'
 
 /**
- * 小程序主题管理工具
+ * 跨平台主题管理工具
  */
 class ThemeManager {
   constructor() {
     this.currentTheme = Storage.getTheme() || defaultTheme
     this.themeColors = themes[this.currentTheme]
+    this.isH5 = Platform.isH5()
   }
 
   /**
@@ -27,11 +29,30 @@ class ThemeManager {
       this.themeColors = themes[themeName]
       Storage.setTheme(themeName)
       
-      // 触发页面重新渲染
-      this.notifyThemeChange()
+      if (this.isH5) {
+        // H5环境：设置CSS变量
+        this.applyCSSVariables()
+      } else {
+        // 小程序环境：触发事件通知
+        this.notifyThemeChange()
+      }
       return true
     }
     return false
+  }
+
+  /**
+   * H5环境应用CSS变量
+   */
+  applyCSSVariables() {
+    if (typeof document !== 'undefined' && document.documentElement) {
+      const root = document.documentElement
+      Object.keys(this.themeColors).forEach(key => {
+        if (key !== 'name') {
+          root.style.setProperty(`--theme-${key}`, this.themeColors[key])
+        }
+      })
+    }
   }
 
   /**
@@ -52,25 +73,31 @@ class ThemeManager {
    * 通知主题变更
    */
   notifyThemeChange() {
-    // 发送全局事件通知主题变更
-    Taro.eventCenter.trigger('themeChange', {
-      theme: this.currentTheme,
-      colors: this.themeColors
-    })
+    if (typeof Taro !== 'undefined' && Taro.eventCenter) {
+      // 发送全局事件通知主题变更
+      Taro.eventCenter.trigger('themeChange', {
+        theme: this.currentTheme,
+        colors: this.themeColors
+      })
+    }
   }
 
   /**
    * 监听主题变更
    */
   onThemeChange(callback) {
-    Taro.eventCenter.on('themeChange', callback)
+    if (typeof Taro !== 'undefined' && Taro.eventCenter) {
+      Taro.eventCenter.on('themeChange', callback)
+    }
   }
 
   /**
    * 移除主题变更监听
    */
   offThemeChange(callback) {
-    Taro.eventCenter.off('themeChange', callback)
+    if (typeof Taro !== 'undefined' && Taro.eventCenter) {
+      Taro.eventCenter.off('themeChange', callback)
+    }
   }
 
   /**
@@ -99,6 +126,15 @@ class ThemeManager {
       backgroundDark: { backgroundColor: this.themeColors.backgroundDark },
       border: { borderColor: this.themeColors.border },
       borderLight: { borderColor: this.themeColors.borderLight }
+    }
+  }
+
+  /**
+   * 初始化主题（在应用启动时调用）
+   */
+  init() {
+    if (this.isH5) {
+      this.applyCSSVariables()
     }
   }
 }
