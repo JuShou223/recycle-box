@@ -1,0 +1,142 @@
+.empty-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  min-height: 200px;
+}
+
+.empty-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 300px;
+  
+  &--small {
+    .empty-image {
+      margin-bottom: 12px;
+      
+      .empty-icon {
+        font-size: 48px;
+      }
+      
+      .empty-img {
+        width: 80px;
+        height: 80px;
+      }
+    }
+    
+    .empty-title {
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+    
+    .empty-description {
+      font-size: 12px;
+      margin-bottom: 16px;
+    }
+  }
+  
+  &--medium {
+    .empty-image {
+      margin-bottom: 16px;
+      
+      .empty-icon {
+        font-size: 64px;
+      }
+      
+      .empty-img {
+        width: 120px;
+        height: 120px;
+      }
+    }
+    
+    .empty-title {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+    
+    .empty-description {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+  }
+  
+  &--large {
+    .empty-image {
+      margin-bottom: 20px;
+      
+      .empty-icon {
+        font-size: 80px;
+      }
+      
+      .empty-img {
+        width: 160px;
+        height: 160px;
+      }
+    }
+    
+    .empty-title {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+    
+    .empty-description {
+      font-size: 16px;
+      margin-bottom: 24px;
+    }
+  }
+}
+
+.empty-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  .empty-icon {
+    opacity: 0.6;
+    line-height: 1;
+  }
+  
+  .empty-img {
+    opacity: 0.6;
+    border-radius: 8px;
+  }
+}
+
+.empty-title {
+  color: var(--theme-text);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.empty-description {
+  color: var(--theme-textSecondary);
+  line-height: 1.5;
+}
+
+.empty-action {
+  margin-top: 8px;
+}
+
+// 特定场景的样式
+.empty-container {
+  &.page-empty {
+    min-height: 60vh;
+    background: var(--theme-background);
+  }
+  
+  &.card-empty {
+    min-height: 120px;
+    padding: 20px;
+    background: var(--theme-backgroundLight);
+    border-radius: 8px;
+  }
+  
+  &.list-empty {
+    min-height: 160px;
+    padding: 30px 20px;
+  }
+}
