@@ -1,11 +1,8 @@
 import React, { useState } from 'react'
 import { View, Text } from '@tarojs/components'
 import Button from '../../components/Button'
-import Card from '../../components/Card'
-import Grid from '../../components/Grid'
 import Tag from '../../components/Tag'
 import Taro from '@tarojs/taro'
-import './index.scss'
 
 function Recycle() {
   const [nearbyBoxes] = useState([
@@ -103,39 +100,39 @@ function Recycle() {
   }
 
   return (
-    <View className='recycle-page'>
+    <View className="min-h-screen bg-gray-50 p-5">
       {/* 快速操作 */}
-      <Card className='quick-ops'>
-        <View className='ops-grid'>
+      <View className="bg-white rounded-xl p-4 mb-5 shadow-sm">
+        <View className="flex gap-3">
           <Button 
             type='primary' 
-            className='scan-btn'
+            className="flex-1 h-12 rounded-3xl font-bold"
             onClick={handleScanCode}
           >
             📱 扫码回收
           </Button>
           <Button 
             type='success'
-            className='map-btn'
+            className="flex-1 h-12 rounded-3xl font-bold"
             onClick={handleViewMap}
           >
             📍 查看地图
           </Button>
         </View>
-      </Card>
+      </View>
 
       {/* 附近回收箱 */}
-      <Card className='nearby-boxes'>
-        <Text className='section-title'>附近回收箱</Text>
+      <View className="bg-white rounded-xl p-4 mb-5 shadow-sm">
+        <Text className="text-base font-bold text-gray-800 block mb-4">附近回收箱</Text>
         {nearbyBoxes.map((box) => (
           <View 
             key={box.id}
-            className='box-item'
+            className="bg-gray-50 rounded-lg p-4 mb-3 last:mb-0 active:scale-98 transition-transform"
             onClick={() => handleBoxSelect(box)}
           >
-            <View className='box-info'>
-              <View className='box-header'>
-                <Text className='box-name'>{box.name}</Text>
+            <View>
+              <View className="flex justify-between items-center mb-2">
+                <Text className="text-sm font-bold text-gray-800">{box.name}</Text>
                 <Tag 
                   type={box.status === 'available' ? 'success' : 'danger'}
                   size='small'
@@ -143,19 +140,19 @@ function Recycle() {
                   {box.status === 'available' ? '可用' : '已满'}
                 </Tag>
               </View>
-              <Text className='box-distance'>📍 距离 {box.distance}</Text>
-              <View className='box-types'>
+              <Text className="text-xs text-gray-600 block mb-2">📍 距离 {box.distance}</Text>
+              <View className="flex gap-1 mb-2">
                 {box.types.map((type, index) => (
-                  <Tag key={index} size='small' className='type-tag'>
+                  <Text key={index} className="bg-blue-100 text-blue-600 text-xs px-2 py-1 rounded">
                     {type}
-                  </Tag>
+                  </Text>
                 ))}
               </View>
-              <View className='capacity-info'>
-                <Text className='capacity-text'>容量: {box.capacity}%</Text>
-                <View className='capacity-bar'>
+              <View className="flex items-center gap-2">
+                <Text className="text-xs text-gray-600 min-w-16">容量: {box.capacity}%</Text>
+                <View className="flex-1 h-1 bg-gray-200 rounded-full overflow-hidden">
                   <View 
-                    className='capacity-fill'
+                    className="h-full bg-gradient-to-r from-green-400 via-yellow-400 to-red-400 transition-all duration-300"
                     style={{ width: `${box.capacity}%` }}
                   />
                 </View>
@@ -163,35 +160,35 @@ function Recycle() {
             </View>
           </View>
         ))}
-      </Card>
+      </View>
 
       {/* 垃圾分类指引 */}
-      <Card className='waste-guide'>
-        <Text className='section-title'>垃圾分类指引</Text>
-        <Grid columns={2} gap={12}>
+      <View className="bg-white rounded-xl p-4 shadow-sm">
+        <Text className="text-base font-bold text-gray-800 block mb-4">垃圾分类指引</Text>
+        <View className="grid grid-cols-2 gap-3">
           {wasteCategories.map((category, index) => (
-            <View key={index} className='category-item'>
-              <View className='category-header'>
-                <Text className='category-icon'>{category.icon}</Text>
+            <View key={index} className="bg-white border border-gray-200 rounded-lg p-3">
+              <View className="flex items-center mb-2">
+                <Text className="text-xl mr-2">{category.icon}</Text>
                 <Text 
-                  className='category-name'
+                  className="text-sm font-bold"
                   style={{ color: category.color }}
                 >
                   {category.type}
                 </Text>
               </View>
-              <Text className='category-points'>{category.points}</Text>
-              <View className='category-examples'>
+              <Text className="text-xs text-green-600 font-bold block mb-2">{category.points}</Text>
+              <View>
                 {category.examples.map((example, idx) => (
-                  <Text key={idx} className='example-item'>
+                  <Text key={idx} className="text-xs text-gray-600 bg-gray-100 px-1.5 py-0.5 rounded mr-1 mb-1 inline-block">
                     {example}
                   </Text>
                 ))}
               </View>
             </View>
           ))}
-        </Grid>
-      </Card>
+        </View>
+      </View>
     </View>
   )
 }
