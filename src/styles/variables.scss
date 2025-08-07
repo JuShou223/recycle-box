@@ -1,0 +1,88 @@
+// CSS 变量定义
+:root {
+  // 主色调
+  --theme-primary: #52c41a;
+  --theme-primaryLight: #73d13d;
+  --theme-primaryDark: #389e0d;
+  
+  // 辅助色
+  --theme-secondary: #faad14;
+  --theme-secondaryLight: #ffd666;
+  --theme-secondaryDark: #d48806;
+  
+  // 强调色
+  --theme-accent: #1890ff;
+  --theme-accentLight: #40a9ff;
+  --theme-accentDark: #096dd9;
+  
+  // 功能色
+  --theme-success: #52c41a;
+  --theme-warning: #faad14;
+  --theme-error: #ff4d4f;
+  --theme-info: #1890ff;
+  
+  // 文字颜色
+  --theme-text: #333333;
+  --theme-textSecondary: #666666;
+  --theme-textTertiary: #999999;
+  --theme-textLight: #ffffff;
+  
+  // 背景色
+  --theme-background: #f5f5f5;
+  --theme-backgroundLight: #ffffff;
+  --theme-backgroundDark: #f0f0f0;
+  
+  // 边框色
+  --theme-border: #e8e8e8;
+  --theme-borderLight: #f0f0f0;
+  
+  // 渐变色
+  --theme-gradientPrimary: linear-gradient(135deg, #52c41a 0%, #73d13d 100%);
+  --theme-gradientSecondary: linear-gradient(135deg, #faad14 0%, #ffd666 100%);
+  --theme-gradientAccent: linear-gradient(135deg, #1890ff 0%, #40a9ff 100%);
+  
+  // 功能色背景
+  --theme-successBg: #f6ffed;
+  --theme-warningBg: #fff7e6;
+  --theme-errorBg: #fff2f0;
+  --theme-infoBg: #e6f7ff;
+}
+
+// SCSS 变量 (兼容现有代码)
+$primary-color: var(--theme-primary);
+$primary-light: var(--theme-primaryLight);
+$primary-dark: var(--theme-primaryDark);
+
+$secondary-color: var(--theme-secondary);
+$secondary-light: var(--theme-secondaryLight);
+$secondary-dark: var(--theme-secondaryDark);
+
+$accent-color: var(--theme-accent);
+$accent-light: var(--theme-accentLight);
+$accent-dark: var(--theme-accentDark);
+
+$success-color: var(--theme-success);
+$warning-color: var(--theme-warning);
+$error-color: var(--theme-error);
+$info-color: var(--theme-info);
+
+$text-color: var(--theme-text);
+$text-secondary: var(--theme-textSecondary);
+$text-tertiary: var(--theme-textTertiary);
+$text-light: var(--theme-textLight);
+
+$background-color: var(--theme-background);
+$background-light: var(--theme-backgroundLight);
+$background-dark: var(--theme-backgroundDark);
+
+$border-color: var(--theme-border);
+$border-light: var(--theme-borderLight);
+
+// 混合器
+@mixin theme-gradient($type: 'primary') {
+  background: var(--theme-gradient#{capitalize($type)});
+}
+
+@mixin theme-shadow($color: 'primary', $opacity: 0.3) {
+  box-shadow: 0 4px 12px rgba(var(--theme-#{$color}), #{$opacity});
+}

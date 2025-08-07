@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { View, Text } from '@tarojs/components'
 import { Card, Button, Avatar, Cell, CellGroup, Switch } from '@nutui/nutui-react-taro'
 import Taro from '@tarojs/taro'
+import ThemeSelector from '../../components/ThemeSelector'
 import './index.scss'
 
 function Profile() {
@@ -21,6 +22,8 @@ function Profile() {
     locationService: true,
     autoLogin: true
   })
+  
+  const [showThemeSelector, setShowThemeSelector] = useState(false)
 
   const [myDevices] = useState([
     {
@@ -74,6 +77,10 @@ function Profile() {
       content: '智能垃圾回收小程序 v1.0.0\n让环保变得更简单',
       showCancel: false
     })
+  }
+  
+  const handleThemeSelect = () => {
+    setShowThemeSelector(true)
   }
 
   const handleSettingChange = (key, value) => {
@@ -166,6 +173,11 @@ function Profile() {
           onClick={handleAbout}
           extra='›'
         />
+        <Cell 
+          title='主题设置'
+          onClick={handleThemeSelect}
+          extra='›'
+        />
       </CellGroup>
 
       {/* 设置选项 */}
@@ -198,6 +210,12 @@ function Profile() {
           }
         />
       </CellGroup>
+      
+      {/* 主题选择器 */}
+      <ThemeSelector 
+        visible={showThemeSelector}
+        onClose={() => setShowThemeSelector(false)}
+      />
     </View>
   )
 }

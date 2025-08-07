@@ -1,12 +1,13 @@
 .index-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: var(--theme-background);
   padding: 20px;
   
   .user-card {
     margin-bottom: 20px;
     border-radius: 16px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: var(--theme-backgroundLight);
     
     .user-info {
       display: flex;
@@ -23,14 +24,14 @@
         .username {
           font-size: 20px;
           font-weight: bold;
-          color: #333;
+          color: var(--theme-text);
           display: block;
           margin-bottom: 4px;
         }
         
         .user-level {
           font-size: 14px;
-          color: #52c41a;
+          color: var(--theme-primary);
           display: block;
           margin-bottom: 8px;
         }
@@ -41,7 +42,7 @@
           
           .stat-item {
             font-size: 12px;
-            color: #666;
+            color: var(--theme-textSecondary);
           }
         }
       }
@@ -52,11 +53,12 @@
     margin-bottom: 20px;
     border-radius: 16px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: var(--theme-backgroundLight);
     
     .card-title {
       font-size: 16px;
       font-weight: bold;
-      color: #333;
+      color: var(--theme-text);
       display: block;
       margin-bottom: 16px;
       padding: 20px 20px 0;
@@ -73,14 +75,14 @@
         .stat-number {
           font-size: 24px;
           font-weight: bold;
-          color: #52c41a;
+          color: var(--theme-primary);
           display: block;
           margin-bottom: 4px;
         }
         
         .stat-label {
           font-size: 12px;
-          color: #666;
+          color: var(--theme-textSecondary);
         }
       }
     }
@@ -90,18 +92,19 @@
     margin-bottom: 20px;
     border-radius: 16px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: var(--theme-backgroundLight);
     
     .card-title {
       font-size: 16px;
       font-weight: bold;
-      color: #333;
+      color: var(--theme-text);
       display: block;
       margin-bottom: 16px;
       padding: 20px 20px 0;
     }
     
     .action-item {
-      background: #f8f9fa;
+      background: var(--theme-backgroundDark);
       border-radius: 12px;
       padding: 20px;
       text-align: center;
@@ -109,7 +112,7 @@
       
       &:active {
         transform: scale(0.95);
-        background: #e9ecef;
+        background: var(--theme-border);
       }
       
       .action-icon {
@@ -121,14 +124,14 @@
       .action-title {
         font-size: 14px;
         font-weight: bold;
-        color: #333;
+        color: var(--theme-text);
         display: block;
         margin-bottom: 4px;
       }
       
       .action-desc {
         font-size: 12px;
-        color: #666;
+        color: var(--theme-textSecondary);
       }
     }
   }
@@ -142,7 +145,7 @@
       border-radius: 28px;
       font-size: 18px;
       font-weight: bold;
-      background: linear-gradient(135deg, #52c41a 0%, #73d13d 100%);
+      background: var(--theme-gradientPrimary);
       box-shadow: 0 4px 12px rgba(82, 196, 26, 0.3);
     }
   }
@@ -150,19 +153,19 @@
   .eco-tip {
     border-radius: 16px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(135deg, #fff7e6 0%, #fff2d9 100%);
+    background: var(--theme-warningBg);
     
     .tip-title {
       font-size: 14px;
       font-weight: bold;
-      color: #d48806;
+      color: var(--theme-secondaryDark);
       display: block;
       margin-bottom: 8px;
     }
     
     .tip-content {
       font-size: 12px;
-      color: #8c6e1f;
+      color: var(--theme-textSecondary);
       line-height: 1.5;
     }
   }
