@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text } from '@tarojs/components'
-import { Button, Card, Progress, Dialog } from '@nutui/nutui-react-taro'
+import Button from '../../components/Button'
+import Card from '../../components/Card'
+import Progress from '../../components/Progress'
+import Modal from '../../components/Modal'
 import Taro from '@tarojs/taro'
 import './index.scss'
 
@@ -201,7 +204,7 @@ function Scan() {
       </Card>
 
       {/* 回收结果弹窗 */}
-      <Dialog
+      <Modal
         visible={showResult}
         title='回收成功'
         onConfirm={handleConfirmRecycle}
@@ -212,7 +215,7 @@ function Scan() {
           <Text className='result-points'>获得积分: {points} 分</Text>
           <Text className='result-thanks'>感谢您为环保做出的贡献！</Text>
         </View>
-      </Dialog>
+      </Modal>
     </View>
   )
 }

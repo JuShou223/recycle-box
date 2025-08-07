@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, Map } from '@tarojs/components'
-import { Card, Button, Tag } from '@nutui/nutui-react-taro'
+import Card from '../../components/Card'
+import Button from '../../components/Button'
+import Tag from '../../components/Tag'
 import Taro from '@tarojs/taro'
 import './index.scss'
 

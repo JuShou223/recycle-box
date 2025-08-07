@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { View, Text } from '@tarojs/components'
-import { Card, Tabs, TabPane, Tag, Button } from '@nutui/nutui-react-taro'
+import Card from '../../components/Card'
+import Tabs, { TabPane } from '../../components/Tabs'
+import Tag from '../../components/Tag'
+import Button from '../../components/Button'
 import './index.scss'
 
 function Messages() {

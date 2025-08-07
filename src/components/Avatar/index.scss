@@ -1,0 +1,35 @@
+.custom-avatar {
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--theme-backgroundDark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  &__placeholder {
+    font-size: 50%;
+    color: var(--theme-textSecondary);
+  }
+  
+  // 尺寸
+  &--small {
+    width: 32px;
+    height: 32px;
+  }
+  
+  &--medium {
+    width: 48px;
+    height: 48px;
+  }
+  
+  &--large {
+    width: 64px;
+    height: 64px;
+  }
+}
