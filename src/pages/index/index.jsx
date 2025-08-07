@@ -95,7 +95,9 @@ function Index() {
   };
 
   return (
-    <View className={`min-h-screen bg-gray-50 p-20 ${Platform.getStyleClass()}`}>
+    <View
+      className={`min-h-screen bg-gray-50 p-20 ${Platform.getStyleClass()}`}
+    >
       {/* 用户信息卡片 */}
       <View className="bg-white rounded-20 p-20 mb-20 shadow-sm">
         <View className="flex items-center">
@@ -171,7 +173,7 @@ function Index() {
         <Button
           type="primary"
           size="large"
-          className="w-full h-56 rounded-full text-18 font-bold bg-green-500 shadow-lg"
+          className="w-full box-border h-56 rounded-full text-18 font-bold bg-green-500 shadow-lg"
           onClick={handleScanCode}
         >
           📱 立即扫码回收
