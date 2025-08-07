@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text } from '@tarojs/components'
-import { Popup, Button } from '@nutui/nutui-react-taro'
+import Popup from '../Popup'
+import Button from '../Button'
 import { themes, getCurrentTheme, setTheme } from '../../styles/themes'
 import './index.scss'
 

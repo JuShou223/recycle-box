@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { View, Text } from '@tarojs/components'
-import { Card, Tabs, TabPane, Avatar, Tag } from '@nutui/nutui-react-taro'
+import Card from '../../components/Card'
+import Tabs, { TabPane } from '../../components/Tabs'
+import Avatar from '../../components/Avatar'
+import Tag from '../../components/Tag'
 import './index.scss'
 
 function Ranking() {

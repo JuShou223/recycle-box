@@ -1,0 +1,64 @@
+.custom-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-weight: 400;
+  white-space: nowrap;
+  
+  // 类型样式
+  &--default {
+    background: var(--theme-backgroundDark);
+    color: var(--theme-text);
+    border: 1px solid var(--theme-border);
+  }
+  
+  &--primary {
+    background: var(--theme-infoBg);
+    color: var(--theme-accent);
+    border: 1px solid var(--theme-accentLight);
+  }
+  
+  &--success {
+    background: var(--theme-successBg);
+    color: var(--theme-success);
+    border: 1px solid var(--theme-success);
+  }
+  
+  &--warning {
+    background: var(--theme-warningBg);
+    color: var(--theme-warning);
+    border: 1px solid var(--theme-warning);
+  }
+  
+  &--danger {
+    background: var(--theme-errorBg);
+    color: var(--theme-error);
+    border: 1px solid var(--theme-error);
+  }
+  
+  &--info {
+    background: var(--theme-infoBg);
+    color: var(--theme-info);
+    border: 1px solid var(--theme-info);
+  }
+  
+  // 尺寸样式
+  &--small {
+    padding: 2px 6px;
+    font-size: 10px;
+    height: 18px;
+  }
+  
+  &--medium {
+    padding: 4px 8px;
+    font-size: 12px;
+    height: 22px;
+  }
+  
+  &--large {
+    padding: 6px 12px;
+    font-size: 14px;
+    height: 28px;
+  }
+}
