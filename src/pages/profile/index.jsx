@@ -1,136 +1,147 @@
-import React, { useState } from 'react'
-import { View, Text } from '@tarojs/components'
-import Button from '../../components/Button'
-import Avatar from '../../components/Avatar'
-import Cell, { CellGroup } from '../../components/Cell'
-import Switch from '../../components/Switch'
-import Taro from '@tarojs/taro'
-import ThemeSelector from '../../components/ThemeSelector'
+import React, { useState } from "react";
+import { View, Text } from "@tarojs/components";
+import Button from "../../components/Button";
+import Avatar from "../../components/Avatar";
+import Cell, { CellGroup } from "../../components/Cell";
+import Switch from "../../components/Switch";
+import Taro from "@tarojs/taro";
+import ThemeSelector from "../../components/ThemeSelector";
 
 function Profile() {
   const [userInfo] = useState({
-    nickname: '环保达人',
-    avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
-    phone: '138****8888',
+    nickname: "环保达人",
+    avatar:
+      "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+    phone: "138****8888",
     points: 1250,
     level: 3,
     recycleCount: 28,
     co2Saved: 15.6,
-    joinDate: '2023-06-15'
-  })
+    joinDate: "2023-06-15",
+  });
 
   const [settings, setSettings] = useState({
     notifications: true,
     locationService: true,
-    autoLogin: true
-  })
-  
-  const [showThemeSelector, setShowThemeSelector] = useState(false)
+    autoLogin: true,
+  });
+
+  const [showThemeSelector, setShowThemeSelector] = useState(false);
 
   const [myDevices] = useState([
     {
-      id: 'RB001',
-      name: '万达广场回收点',
-      lastUsed: '2024-01-15 14:30',
-      useCount: 12
+      id: "RB001",
+      name: "万达广场回收点",
+      lastUsed: "2024-01-15 14:30",
+      useCount: 12,
     },
     {
-      id: 'RB002',
-      name: '社区服务中心',
-      lastUsed: '2024-01-14 09:45', 
-      useCount: 8
+      id: "RB002",
+      name: "社区服务中心",
+      lastUsed: "2024-01-14 09:45",
+      useCount: 8,
     },
     {
-      id: 'RB003',
-      name: '地铁站出口',
-      lastUsed: '2024-01-12 16:20',
-      useCount: 5
-    }
-  ])
+      id: "RB003",
+      name: "地铁站出口",
+      lastUsed: "2024-01-12 16:20",
+      useCount: 5,
+    },
+  ]);
 
   const handleEditProfile = () => {
     Taro.showToast({
-      title: '功能开发中',
-      icon: 'none'
-    })
-  }
+      title: "功能开发中",
+      icon: "none",
+    });
+  };
 
   const handleViewMessages = () => {
-    Taro.navigateTo({ url: '/pages/messages/index' })
-  }
+    Taro.navigateTo({ url: "/pages/messages/index" });
+  };
 
   const handleViewHistory = () => {
     Taro.showToast({
-      title: '功能开发中',
-      icon: 'none'
-    })
-  }
+      title: "功能开发中",
+      icon: "none",
+    });
+  };
 
   const handleFeedback = () => {
     Taro.showToast({
-      title: '功能开发中',
-      icon: 'none'
-    })
-  }
+      title: "功能开发中",
+      icon: "none",
+    });
+  };
 
   const handleAbout = () => {
     Taro.showModal({
-      title: '关于我们',
-      content: '智能垃圾回收小程序 v1.0.0\n让环保变得更简单',
-      showCancel: false
-    })
-  }
-  
+      title: "关于我们",
+      content: "智能垃圾回收小程序 v1.0.0\n让环保变得更简单",
+      showCancel: false,
+    });
+  };
+
   const handleThemeSelect = () => {
-    setShowThemeSelector(true)
-  }
+    setShowThemeSelector(true);
+  };
 
   const handleSettingChange = (key, value) => {
-    setSettings(prev => ({
+    setSettings((prev) => ({
       ...prev,
-      [key]: value
-    }))
-  }
+      [key]: value,
+    }));
+  };
 
   return (
     <View className="min-h-screen bg-gray-50">
       {/* 用户信息卡片 */}
       <View className="m-20 rounded-20 bg-white p-20 shadow-sm">
         <View className="flex items-center mb-20">
-          <Avatar 
-            size="large" 
-            src={userInfo.avatar}
-            className="mr-16"
-          />
+          <Avatar size="large" src={userInfo.avatar} className="mr-16" />
           <View className="flex-1">
-            <Text className="text-20 font-bold text-gray-800 block mb-4">{userInfo.nickname}</Text>
-            <Text className="text-14 text-gray-600 block mb-2">{userInfo.phone}</Text>
-            <Text className="text-12 text-gray-500">加入时间: {userInfo.joinDate}</Text>
+            <Text className="text-20 font-bold text-gray-800 block mb-4">
+              {userInfo.nickname}
+            </Text>
+            <Text className="text-14 text-gray-600 block mb-2">
+              {userInfo.phone}
+            </Text>
+            <Text className="text-12 text-gray-500">
+              加入时间: {userInfo.joinDate}
+            </Text>
           </View>
-          <Button 
-            size='small'
+          <Button
+            size="small"
             className="bg-green-500 text-white px-12 py-4 rounded-full text-12"
             onClick={handleEditProfile}
           >
             编辑
           </Button>
         </View>
-        
+
         <View className="flex justify-between">
           <View className="text-center">
-            <Text className="text-20 font-bold text-green-600 block mb-4">{userInfo.points}</Text>
+            <Text className="text-20 font-bold text-green-600 block mb-4">
+              {userInfo.points}
+            </Text>
             <Text className="text-12 text-gray-600">总积分</Text>
           </View>
           <View className="text-center">
-            <Text className="text-20 font-bold text-green-600 block mb-4">{userInfo.recycleCount}</Text>
+            <Text className="text-20 font-bold text-green-600 block mb-4">
+              {userInfo.recycleCount}
+            </Text>
             <Text className="text-12 text-gray-600">回收次数</Text>
           </View>
           <View className="text-center">
-            <Text className="text-20 font-bold text-green-600 block mb-4">{userInfo.co2Saved}kg</Text>
+            <Text className="text-20 font-bold text-green-600 block mb-4">
+              {userInfo.co2Saved}kg
+            </Text>
             <Text className="text-12 text-gray-600">减少碳排放</Text>
           </View>
           <View className="text-center">
-            <Text className="text-20 font-bold text-green-600 block mb-4">Lv.{userInfo.level}</Text>
+            <Text className="text-20 font-bold text-green-600 block mb-4">
+              Lv.{userInfo.level}
+            </Text>
             <Text className="text-12 text-gray-600">当前等级</Text>
           </View>
         </View>
@@ -138,12 +149,21 @@ function Profile() {
 
       {/* 我的设备 */}
       <View className="mx-20 mb-20 bg-white rounded-12 p-16 shadow-sm">
-        <Text className="text-16 font-bold text-gray-800 block mb-16">我的设备</Text>
+        <Text className="text-16 font-bold text-gray-800 block mb-16">
+          我的设备
+        </Text>
         {myDevices.map((device) => (
-          <View key={device.id} className="flex items-center py-12 border-b border-gray-100">
+          <View
+            key={device.id}
+            className="flex items-center py-12 border-b border-gray-100"
+          >
             <View className="flex-1">
-              <Text className="text-14 font-bold text-gray-800 block mb-4">{device.name}</Text>
-              <Text className="text-12 text-gray-600 block mb-2">设备ID: {device.id}</Text>
+              <Text className="text-14 font-bold text-gray-800 block mb-4">
+                {device.name}
+              </Text>
+              <Text className="text-12 text-gray-600 block mb-2">
+                设备ID: {device.id}
+              </Text>
               <Text className="text-12 text-gray-500">
                 使用{device.useCount}次 · 最近使用: {device.lastUsed}
               </Text>
@@ -155,71 +175,53 @@ function Profile() {
 
       {/* 功能菜单 */}
       <View className="mx-20 mb-20 bg-white rounded-12 overflow-hidden shadow-sm">
-        <Cell 
-          title='消息通知'
-          onClick={handleViewMessages}
-          extra='›'
-        />
-        <Cell 
-          title='回收记录'
-          onClick={handleViewHistory}
-          extra='›'
-        />
-        <Cell 
-          title='意见反馈'
-          onClick={handleFeedback}
-          extra='›'
-        />
-        <Cell 
-          title='关于我们'
-          onClick={handleAbout}
-          extra='›'
-        />
-        <Cell 
-          title='主题设置'
-          onClick={handleThemeSelect}
-          extra='›'
-        />
+        <Cell title="消息通知" onClick={handleViewMessages} extra="›" />
+        <Cell title="回收记录" onClick={handleViewHistory} extra="›" />
+        <Cell title="意见反馈" onClick={handleFeedback} extra="›" />
+        <Cell title="关于我们" onClick={handleAbout} extra="›" />
+        <Cell title="主题设置" onClick={handleThemeSelect} extra="›" />
       </View>
 
       {/* 设置选项 */}
       <View className="mx-20 bg-white rounded-12 overflow-hidden shadow-sm">
-        <Cell 
-          title='消息推送'
+        <Cell
+          title="消息推送"
           extra={
-            <Switch 
+            <Switch
               checked={settings.notifications}
-              onChange={(value) => handleSettingChange('notifications', value)}
+              onChange={(value) => handleSettingChange("notifications", value)}
             />
           }
         />
-        <Cell 
-          title='位置服务'
+        <Cell
+          title="位置服务"
           extra={
-            <Switch 
+            <Switch
               checked={settings.locationService}
-              onChange={(value) => handleSettingChange('locationService', value)}
+              onChange={(value) =>
+                handleSettingChange("locationService", value)
+              }
             />
           }
         />
-        <Cell 
-          title='自动登录'
+        <Cell
+          title="自动登录"
           extra={
-            <Switch 
+            <Switch
               checked={settings.autoLogin}
-              onChange={(value) => handleSettingChange('autoLogin', value)}
+              onChange={(value) => handleSettingChange("autoLogin", value)}
             />
           }
         />
       </View>
-      
+
       {/* 主题选择器 */}
-      <ThemeSelector 
-        visible={showThemeSelector}
+      <ThemeSelector
+        show={showThemeSelector}
         onClose={() => setShowThemeSelector(false)}
       />
     </View>
-  )
+  );
 }
 
-export default Profile
+export default Profile;

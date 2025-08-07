@@ -1,35 +1,35 @@
-import React, { useState, useEffect } from 'react'
-import { View, Text } from '@tarojs/components'
-import Popup from '../Popup'
-import Button from '../Button'
-import { themes, getCurrentTheme, setTheme } from '../../styles/themes'
-import './index.scss'
+import React, { useState, useEffect } from "react";
+import { View, Text } from "@tarojs/components";
+import Popup from "../Popup";
+import Button from "../Button";
+import { themes, getCurrentTheme, setTheme } from "../../styles/themes";
+import "./index.scss";
 
-function ThemeSelector({ visible, onClose }) {
-  const [currentTheme, setCurrentTheme] = useState(getCurrentTheme())
+function ThemeSelector({ show, onClose }) {
+  const [currentTheme, setCurrentTheme] = useState(getCurrentTheme());
 
   useEffect(() => {
-    setCurrentTheme(getCurrentTheme())
-  }, [visible])
+    setCurrentTheme(getCurrentTheme());
+  }, [show]);
 
   const handleThemeChange = (themeName) => {
     if (setTheme(themeName)) {
-      setCurrentTheme(themeName)
+      setCurrentTheme(themeName);
       // 触发页面重新渲染
       setTimeout(() => {
-        if (onClose) onClose()
-      }, 300)
+        if (onClose) onClose();
+      }, 300);
     }
-  }
+  };
 
-  const themeList = Object.keys(themes).map(key => ({
+  const themeList = Object.keys(themes).map((key) => ({
     key,
-    ...themes[key]
-  }))
+    ...themes[key],
+  }));
 
   return (
     <Popup
-      visible={visible}
+      show={show}
       position="bottom"
       onClose={onClose}
       className="theme-selector-popup"
@@ -37,26 +37,30 @@ function ThemeSelector({ visible, onClose }) {
       <View className="theme-selector">
         <View className="selector-header">
           <Text className="selector-title">选择主题</Text>
-          <Button size="small" onClick={onClose}>完成</Button>
+          <Button size="small" onClick={onClose}>
+            完成
+          </Button>
         </View>
-        
+
         <View className="theme-list">
           {themeList.map((theme) => (
-            <View 
+            <View
               key={theme.key}
-              className={`theme-item ${currentTheme === theme.key ? 'active' : ''}`}
+              className={`theme-item ${
+                currentTheme === theme.key ? "active" : ""
+              }`}
               onClick={() => handleThemeChange(theme.key)}
             >
               <View className="theme-preview">
-                <View 
+                <View
                   className="color-primary"
                   style={{ backgroundColor: theme.primary }}
                 />
-                <View 
+                <View
                   className="color-secondary"
                   style={{ backgroundColor: theme.secondary }}
                 />
-                <View 
+                <View
                   className="color-accent"
                   style={{ backgroundColor: theme.accent }}
                 />
@@ -70,7 +74,7 @@ function ThemeSelector({ visible, onClose }) {
         </View>
       </View>
     </Popup>
-  )
+  );
 }
 
-export default ThemeSelector
+export default ThemeSelector;
