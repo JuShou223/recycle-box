@@ -1,6 +1,5 @@
 import React from 'react'
 import { View } from '@tarojs/components'
-import './index.scss'
 
 function Grid({ 
   columns = 2,
@@ -11,7 +10,7 @@ function Grid({
 }) {
   return (
     <View 
-      className={`custom-grid ${className}`}
+      className={`grid w-full ${className}`}
       style={{
         gridTemplateColumns: `repeat(${columns}, 1fr)`,
         gap: `${gap}px`

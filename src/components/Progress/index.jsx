@@ -1,6 +1,5 @@
 import React from 'react'
 import { View } from '@tarojs/components'
-import './index.scss'
 
 function Progress({ 
   percentage = 0,
@@ -10,16 +9,18 @@ function Progress({
   ...props 
 }) {
   return (
-    <View className={`custom-progress ${className}`} {...props}>
+    <View className={`w-full ${className}`} {...props}>
       <View 
-        className="custom-progress__track"
+        className="bg-theme-bg-dark rounded-4 overflow-hidden relative"
         style={{ height: `${strokeWidth}px` }}
       >
         <View 
-          className="custom-progress__bar"
+          className="h-full rounded-4 transition-all"
           style={{ 
             width: `${Math.min(100, Math.max(0, percentage))}%`,
             backgroundColor: strokeColor
+            transitionDuration: '0.3s',
+            transitionTimingFunction: 'ease'
           }}
         />
       </View>

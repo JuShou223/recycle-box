@@ -1,6 +1,5 @@
 import React from 'react'
 import { View } from '@tarojs/components'
-import './index.scss'
 
 function Switch({ 
   checked = false,
@@ -16,11 +15,23 @@ function Switch({
 
   return (
     <View 
-      className={`custom-switch ${checked ? 'custom-switch--checked' : ''} ${disabled ? 'custom-switch--disabled' : ''} ${className}`}
+      className={`relative w-44 h-24 rounded-12 cursor-pointer transition-all border ${
+        checked 
+          ? 'bg-theme-primary border-theme-primary' 
+          : 'bg-theme-bg-dark border-theme-border'
+      } ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${className}`}
       onClick={handleClick}
       {...props}
     >
-      <View className="custom-switch__handle" />
+      <View 
+        className="absolute top-2 w-18 h-18 bg-theme-bg-light rounded-full transition-all shadow-sm"
+        style={{
+          left: checked ? '22px' : '2px',
+          transitionDuration: '0.3s',
+          transitionTimingFunction: 'ease',
+          boxShadow: '0 1px 3px rgba(0, 0, 0, 0.3)'
+        }}
+      />
     </View>
   )
 }

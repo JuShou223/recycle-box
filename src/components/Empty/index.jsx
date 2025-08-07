@@ -1,7 +1,6 @@
 import React from 'react'
 import { View, Text, Image } from '@tarojs/components'
 import Button from '../Button'
-import './index.scss'
 
 function Empty({ 
   image,
@@ -18,34 +17,68 @@ function Empty({
     return '📭'
   }
 
+  const sizeClasses = {
+    small: {
+      container: 'p-40 min-h-200',
+      content: 'max-w-300',
+      image: 'mb-12',
+      icon: 'text-48',
+      img: 'w-80 h-80',
+      title: 'text-14 mb-6',
+      description: 'text-12 mb-16',
+      action: 'mt-8'
+    },
+    medium: {
+      container: 'p-40 min-h-200',
+      content: 'max-w-300',
+      image: 'mb-16',
+      icon: 'text-64',
+      img: 'w-120 h-120',
+      title: 'text-16 mb-8',
+      description: 'text-14 mb-20',
+      action: 'mt-8'
+    },
+    large: {
+      container: 'p-40 min-h-200',
+      content: 'max-w-300',
+      image: 'mb-20',
+      icon: 'text-80',
+      img: 'w-160 h-160',
+      title: 'text-18 mb-12',
+      description: 'text-16 mb-24',
+      action: 'mt-8'
+    }
+  }
+
+  const currentSize = sizeClasses[imageSize]
   return (
-    <View className={`empty-container ${className}`} {...props}>
-      <View className={`empty-content empty-content--${imageSize}`}>
+    <View className={`flex items-center justify-center ${currentSize.container} ${className}`} {...props}>
+      <View className={`flex flex-col items-center justify-center text-center ${currentSize.content}`}>
         {/* 空状态图片 */}
-        <View className="empty-image">
+        <View className={`flex items-center justify-center ${currentSize.image}`}>
           {image ? (
             typeof image === 'string' && image.startsWith('http') ? (
               <Image 
                 src={image} 
-                className="empty-img"
+                className={`opacity-60 rounded-8 ${currentSize.img}`}
                 mode="aspectFit"
               />
             ) : (
-              <Text className="empty-icon">{image}</Text>
+              <Text className={`opacity-60 leading-none ${currentSize.icon}`}>{image}</Text>
             )
           ) : (
-            <Text className="empty-icon">{getDefaultImage()}</Text>
+            <Text className={`opacity-60 leading-none ${currentSize.icon}`}>{getDefaultImage()}</Text>
           )}
         </View>
         
         {/* 标题 */}
         {title && (
-          <Text className="empty-title">{title}</Text>
+          <Text className={`text-theme-text font-medium leading-tight ${currentSize.title}`}>{title}</Text>
         )}
         
         {/* 描述 */}
         {description && (
-          <Text className="empty-description">{description}</Text>
+          <Text className={`text-theme-text-secondary leading-relaxed ${currentSize.description}`}>{description}</Text>
         )}
         
         {/* 操作按钮 */}
@@ -54,7 +87,7 @@ function Empty({
             type="primary" 
             size="medium"
             onClick={onAction}
-            className="empty-action"
+            className={currentSize.action}
           >
             {actionText}
           </Button>

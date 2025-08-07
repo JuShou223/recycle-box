@@ -1,6 +1,5 @@
 import React from 'react'
 import { View, Image } from '@tarojs/components'
-import './index.scss'
 
 function Avatar({ 
   src, 
@@ -8,16 +7,25 @@ function Avatar({
   className = '',
   ...props 
 }) {
+  const sizeClasses = {
+    small: 'w-32 h-32',
+    medium: 'w-48 h-48', 
+    large: 'w-64 h-64'
+  }
+
   return (
-    <View className={`custom-avatar custom-avatar--${size} ${className}`} {...props}>
+    <View 
+      className={`rounded-full overflow-hidden bg-theme-bg-dark flex items-center justify-center ${sizeClasses[size]} ${className}`} 
+      {...props}
+    >
       {src ? (
         <Image 
           src={src} 
-          className="custom-avatar__image"
+          className="w-full h-full object-cover"
           mode="aspectFill"
         />
       ) : (
-        <View className="custom-avatar__placeholder">
+        <View className="text-theme-text-secondary" style={{ fontSize: '50%' }}>
           👤
         </View>
       )}

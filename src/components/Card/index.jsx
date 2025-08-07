@@ -1,11 +1,10 @@
 import React from 'react'
 import { View } from '@tarojs/components'
-import './index.scss'
 
 function Card({ children, className = '', onClick, ...props }) {
   return (
     <View 
-      className={`custom-card ${className}`}
+      className={`bg-theme-bg-light rounded-12 p-16 shadow-sm mb-12 last:mb-0 ${className}`}
       onClick={onClick}
       {...props}
     >

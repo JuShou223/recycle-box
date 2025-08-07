@@ -1,6 +1,5 @@
 import React from 'react'
 import { View } from '@tarojs/components'
-import './index.scss'
 
 function Cell({ 
   title,
@@ -12,22 +11,22 @@ function Cell({
 }) {
   return (
     <View 
-      className={`custom-cell ${onClick ? 'custom-cell--clickable' : ''} ${className}`}
+      className={`flex items-center p-16 border-b border-theme-border-light last:border-b-0 transition-colors ${onClick ? 'cursor-pointer active:bg-theme-bg-dark' : ''} ${className}`}
       onClick={onClick}
       {...props}
     >
-      <View className="custom-cell__content">
-        <View className="custom-cell__title">
+      <View className="flex-1">
+        <View className="text-14 text-theme-text font-medium">
           {title}
         </View>
         {children && (
-          <View className="custom-cell__body">
+          <View className="mt-4 text-12 text-theme-text-secondary">
             {children}
           </View>
         )}
       </View>
       {extra && (
-        <View className="custom-cell__extra">
+        <View className="ml-12 text-14 text-theme-text-secondary flex items-center">
           {extra}
         </View>
       )}
@@ -37,7 +36,7 @@ function Cell({
 
 function CellGroup({ children, className = '', ...props }) {
   return (
-    <View className={`custom-cell-group ${className}`} {...props}>
+    <View className={`bg-theme-bg-light rounded-12 overflow-hidden mb-12 ${className}`} {...props}>
       {children}
     </View>
   )

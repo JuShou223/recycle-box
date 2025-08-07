@@ -3,7 +3,6 @@ import { View, Text } from "@tarojs/components";
 import Popup from "../Popup";
 import Button from "../Button";
 import { themes, getCurrentTheme, setTheme } from "../../styles/themes";
-import "./index.scss";
 
 function ThemeSelector({ show, onClose }) {
   const [currentTheme, setCurrentTheme] = useState(getCurrentTheme());
@@ -32,42 +31,43 @@ function ThemeSelector({ show, onClose }) {
       show={show}
       position="bottom"
       onClose={onClose}
-      className="theme-selector-popup"
     >
-      <View className="theme-selector">
-        <View className="selector-header">
-          <Text className="selector-title">选择主题</Text>
+      <View className="p-20 bg-theme-bg-light rounded-t-16">
+        <View className="flex justify-between items-center mb-20 pb-16 border-b border-theme-border-light">
+          <Text className="text-18 font-bold text-theme-text">选择主题</Text>
           <Button size="small" onClick={onClose}>
             完成
           </Button>
         </View>
 
-        <View className="theme-list">
+        <View>
           {themeList.map((theme) => (
             <View
               key={theme.key}
-              className={`theme-item ${
-                currentTheme === theme.key ? "active" : ""
+              className={`flex items-center p-16 mb-12 bg-theme-bg-light border-2 rounded-12 transition-all cursor-pointer hover:transform hover:translate-y-2 hover:shadow-lg ${
+                currentTheme === theme.key 
+                  ? "border-theme-primary bg-theme-success-bg" 
+                  : "border-theme-border-light"
               }`}
               onClick={() => handleThemeChange(theme.key)}
             >
-              <View className="theme-preview">
+              <View className="flex gap-4 mr-12">
                 <View
-                  className="color-primary"
+                  className="w-20 h-20 rounded-full border-2 border-theme-bg-light"
                   style={{ backgroundColor: theme.primary }}
                 />
                 <View
-                  className="color-secondary"
+                  className="w-20 h-20 rounded-full border-2 border-theme-bg-light"
                   style={{ backgroundColor: theme.secondary }}
                 />
                 <View
-                  className="color-accent"
+                  className="w-20 h-20 rounded-full border-2 border-theme-bg-light"
                   style={{ backgroundColor: theme.accent }}
                 />
               </View>
-              <Text className="theme-name">{theme.name}</Text>
+              <Text className="flex-1 text-16 font-medium text-theme-text">{theme.name}</Text>
               {currentTheme === theme.key && (
-                <Text className="theme-check">✓</Text>
+                <Text className="text-18 text-theme-primary font-bold">✓</Text>
               )}
             </View>
           ))}
