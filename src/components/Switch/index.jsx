@@ -1,5 +1,6 @@
 import React from 'react'
 import { View } from '@tarojs/components'
+import { useTheme } from '../../hooks/useTheme'
 
 function Switch({ 
   checked = false,
@@ -8,18 +9,24 @@ function Switch({
   className = '',
   ...props 
 }) {
+  const { themeColors } = useTheme()
+  
   const handleClick = () => {
     if (disabled) return
     onChange && onChange(!checked)
   }
 
+  const switchStyle = checked 
+    ? { backgroundColor: themeColors.primary, borderColor: themeColors.primary }
+    : { backgroundColor: '#f5f5f5', borderColor: '#d9d9d9' }
+
   return (
     <View 
-      className={`relative w-44 h-24 rounded-12 border ${
-        checked 
-          ? 'bg-green-500 border-green-500' 
-          : 'bg-gray-200 border-gray-300'
-      } ${disabled ? 'opacity-50' : ''} ${className}`}
+      className={`relative w-44 h-24 rounded-12 border ${disabled ? '' : ''} ${className}`}
+      style={{
+        ...switchStyle,
+        opacity: disabled ? 0.5 : 1
+      }}
       onClick={handleClick}
       {...props}
     >

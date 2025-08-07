@@ -3,8 +3,10 @@ import { View, Text } from '@tarojs/components'
 import Button from '../../components/Button'
 import Tag from '../../components/Tag'
 import Taro from '@tarojs/taro'
+import { useTheme } from '../../hooks/useTheme'
 
 function Recycle() {
+  const { themeColors } = useTheme()
   const [nearbyBoxes] = useState([
     {
       id: 'RB001',
@@ -43,21 +45,21 @@ function Recycle() {
     {
       type: '塑料',
       icon: '🥤',
-      color: '#52c41a', 
+      color: themeColors.success, 
       examples: ['塑料瓶', '塑料袋', '塑料盒', '泡沫'],
       points: '3积分/kg'
     },
     {
       type: '金属',
       icon: '🥫',
-      color: '#faad14',
+      color: themeColors.warning,
       examples: ['易拉罐', '金属盒', '废铁', '铜线'],
       points: '5积分/kg'
     },
     {
       type: '厨余',
       icon: '🍎',
-      color: '#f5222d',
+      color: themeColors.error,
       examples: ['果皮', '菜叶', '剩饭', '茶叶渣'],
       points: '1积分/kg'
     }
@@ -149,11 +151,14 @@ function Recycle() {
                 ))}
               </View>
               <View className="flex items-center gap-8">
-                <Text className="text-12 text-gray-600 min-w-64">容量: {box.capacity}%</Text>
+                <Text className="text-12 text-gray-600">容量: {box.capacity}%</Text>
                 <View className="flex-1 h-4 bg-gray-200 rounded-full overflow-hidden">
                   <View 
-                    className="h-full bg-green-400"
-                    style={{ width: `${box.capacity}%` }}
+                    className="h-full"
+                    style={{ 
+                      width: `${box.capacity}%`,
+                      backgroundColor: themeColors.success
+                    }}
                   />
                 </View>
               </View>
@@ -178,6 +183,12 @@ function Recycle() {
                 </Text>
               </View>
               <Text className="text-12 text-green-600 font-bold block mb-8">{category.points}</Text>
+              <Text 
+                className="text-12 font-bold block mb-8"
+                style={{ color: themeColors.success }}
+              >
+                {category.points}
+              </Text>
               <View>
                 {category.examples.map((example, idx) => (
                   <Text key={idx} className="text-12 text-gray-600 bg-gray-100 px-6 py-2 rounded-4 mr-4 mb-4 inline-block">

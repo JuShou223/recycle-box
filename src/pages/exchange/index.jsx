@@ -4,8 +4,10 @@ import Button from "../../components/Button";
 import Tabs, { TabPane } from "../../components/Tabs";
 import Tag from "../../components/Tag";
 import Taro from "@tarojs/taro";
+import { useTheme } from "../../hooks/useTheme";
 
 function Exchange() {
+  const { themeColors } = useTheme()
   const [activeTab, setActiveTab] = useState("0");
   const [userPoints] = useState(1250);
 
@@ -226,7 +228,8 @@ function Exchange() {
         <View className="flex-1 flex flex-col justify-between">
           <View className="flex items-baseline gap-8 mb-8">
             <Text className="text-16 font-bold text-yellow-600">
-              {item.points}积分
+              className="text-16 font-bold"
+              style={{ color: themeColors.warning }}
             </Text>
             {item.originalPrice && (
               <Text className="text-12 text-gray-500 line-through">
@@ -235,7 +238,8 @@ function Exchange() {
             )}
             {item.amount && (
               <Text className="text-14 font-bold text-red-500">
-                ¥{item.amount}
+                className="text-14 font-bold"
+                style={{ color: themeColors.error }}
               </Text>
             )}
           </View>
@@ -280,12 +284,15 @@ function Exchange() {
   return (
     <View className="min-h-screen bg-gray-50">
       {/* 积分余额 */}
-      <View className="m-20 rounded-20 bg-yellow-500 text-white text-center p-20">
-        <Text className="text-14 text-yellow-100 block mb-8">我的积分</Text>
+      <View 
+        className="m-20 rounded-20 text-white text-center p-20"
+        style={{ backgroundColor: themeColors.warning }}
+      >
+        <Text className="text-14 block mb-8" style={{ color: 'rgba(255,255,255,0.8)' }}>我的积分</Text>
         <Text className="text-30 font-bold text-white block mb-4">
           {userPoints}
         </Text>
-        <Text className="text-12 text-yellow-100">积分可兑换各种好礼</Text>
+        <Text className="text-12" style={{ color: 'rgba(255,255,255,0.8)' }}>积分可兑换各种好礼</Text>
       </View>
 
       {/* 兑换分类 */}

@@ -3,8 +3,10 @@ import { View, Text } from "@tarojs/components";
 import Tabs, { TabPane } from "../../components/Tabs";
 import Avatar from "../../components/Avatar";
 import Tag from "../../components/Tag";
+import { useTheme } from "../../hooks/useTheme";
 
 function Ranking() {
+  const { themeColors } = useTheme()
   const [activeTab, setActiveTab] = useState("0");
 
   const [weeklyRanking] = useState([
@@ -182,7 +184,8 @@ function Ranking() {
               )}
             </View>
             <Text className="text-16 font-bold text-yellow-600">
-              {user.points}积分
+              className="text-16 font-bold"
+              style={{ color: themeColors.warning }}
             </Text>
           </View>
         </View>
@@ -190,11 +193,13 @@ function Ranking() {
         <View className="flex justify-around pt-12 border-t border-gray-100">
           <View className="text-center">
             <Text className="text-16 font-bold text-green-600 block mb-2">
-              {user.recycleCount}
+              className="text-16 font-bold block mb-2"
+              style={{ color: themeColors.success }}
             </Text>
             <Text className="text-12 text-gray-600">回收次数</Text>
           </View>
-          <View className="text-center">
+              className="text-16 font-bold block mb-2"
+              style={{ color: themeColors.success }}
             <Text className="text-16 font-bold text-green-600 block mb-2">
               {user.co2Saved}kg
             </Text>
@@ -208,11 +213,14 @@ function Ranking() {
   return (
     <View className="min-h-screen bg-gray-50">
       {/* 页面标题 */}
-      <View className="bg-green-500 text-white text-center py-32 px-20">
+      <View 
+        className="text-white text-center py-32 px-20"
+        style={{ backgroundColor: themeColors.primary }}
+      >
         <Text className="text-20 font-bold text-white block mb-8">
           🏆 环保达人榜
         </Text>
-        <Text className="text-14 text-green-100">看看谁是最棒的环保达人</Text>
+        <Text className="text-14" style={{ color: 'rgba(255,255,255,0.8)' }}>看看谁是最棒的环保达人</Text>
       </View>
 
       {/* 排行榜标签页 */}

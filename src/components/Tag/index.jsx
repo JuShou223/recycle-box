@@ -14,17 +14,41 @@ function Tag({
   const getTypeStyle = (type) => {
     switch (type) {
       case 'primary':
-        return { backgroundColor: '#e6f7ff', color: themeColors.primary, borderColor: themeColors.primaryLight }
+        return { 
+          backgroundColor: '#e6f7ff', 
+          color: themeColors.primary, 
+          borderColor: themeColors.primaryLight 
+        }
       case 'success':
-        return { backgroundColor: '#f6ffed', color: themeColors.success, borderColor: themeColors.success }
+        return { 
+          backgroundColor: '#f6ffed', 
+          color: themeColors.success, 
+          borderColor: themeColors.success 
+        }
       case 'warning':
-        return { backgroundColor: '#fff7e6', color: themeColors.warning, borderColor: themeColors.warning }
+        return { 
+          backgroundColor: '#fff7e6', 
+          color: themeColors.warning, 
+          borderColor: themeColors.warning 
+        }
       case 'danger':
-        return { backgroundColor: '#fff2f0', color: themeColors.error, borderColor: themeColors.error }
+        return { 
+          backgroundColor: '#fff2f0', 
+          color: themeColors.error, 
+          borderColor: themeColors.error 
+        }
       case 'info':
-        return { backgroundColor: '#e6f7ff', color: themeColors.info, borderColor: themeColors.info }
+        return { 
+          backgroundColor: '#e6f7ff', 
+          color: themeColors.info, 
+          borderColor: themeColors.info 
+        }
       default:
-        return { backgroundColor: '#f5f5f5', color: '#666666', borderColor: '#d9d9d9' }
+        return { 
+          backgroundColor: '#f5f5f5', 
+          color: '#666666', 
+          borderColor: '#d9d9d9' 
+        }
     }
   }
 
@@ -35,6 +59,7 @@ function Tag({
   }
 
   const typeStyle = getTypeStyle(type)
+  
   return (
     <View 
       className={`inline-flex items-center justify-center rounded-4 font-normal border ${sizeClasses[size]} ${className}`}

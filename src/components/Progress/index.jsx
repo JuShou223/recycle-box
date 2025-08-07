@@ -1,13 +1,18 @@
 import React from 'react'
 import { View } from '@tarojs/components'
+import { useTheme } from '../../hooks/useTheme'
 
 function Progress({ 
   percentage = 0,
   strokeWidth = 8,
-  strokeColor = '#52c41a',
+  strokeColor,
   className = '',
   ...props 
 }) {
+  const { themeColors } = useTheme()
+  
+  const finalStrokeColor = strokeColor || themeColors.primary
+  
   return (
     <View className={`w-full ${className}`} {...props}>
       <View 
@@ -18,7 +23,7 @@ function Progress({
           className="h-full rounded-4"
           style={{ 
             width: `${Math.min(100, Math.max(0, percentage))}%`,
-            backgroundColor: strokeColor,
+            backgroundColor: finalStrokeColor,
             transition: 'width 0.3s ease'
           }}
         />

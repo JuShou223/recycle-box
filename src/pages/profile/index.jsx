@@ -6,8 +6,10 @@ import Cell, { CellGroup } from "../../components/Cell";
 import Switch from "../../components/Switch";
 import Taro from "@tarojs/taro";
 import ThemeSelector from "../../components/ThemeSelector";
+import { useTheme } from "../../hooks/useTheme";
 
 function Profile() {
+  const { themeColors } = useTheme()
   const [userInfo] = useState({
     nickname: "环保达人",
     avatar:
@@ -112,7 +114,8 @@ function Profile() {
           </View>
           <Button
             size="small"
-            className="bg-green-500 text-white px-12 py-4 rounded-full text-12"
+            className="px-12 py-4 rounded-full text-12"
+            style={{ backgroundColor: themeColors.primary, color: '#ffffff' }}
             onClick={handleEditProfile}
           >
             编辑
@@ -121,25 +124,33 @@ function Profile() {
 
         <View className="flex justify-between">
           <View className="text-center">
-            <Text className="text-20 font-bold text-green-600 block mb-4">
+            <Text className="text-20 font-bold block mb-4"
+              style={{ color: themeColors.primary }}
+            >
               {userInfo.points}
             </Text>
             <Text className="text-12 text-gray-600">总积分</Text>
           </View>
           <View className="text-center">
-            <Text className="text-20 font-bold text-green-600 block mb-4">
+            <Text className="text-20 font-bold block mb-4"
+              style={{ color: themeColors.primary }}
+            >
               {userInfo.recycleCount}
             </Text>
             <Text className="text-12 text-gray-600">回收次数</Text>
           </View>
           <View className="text-center">
-            <Text className="text-20 font-bold text-green-600 block mb-4">
+            <Text className="text-20 font-bold block mb-4"
+              style={{ color: themeColors.primary }}
+            >
               {userInfo.co2Saved}kg
             </Text>
             <Text className="text-12 text-gray-600">减少碳排放</Text>
           </View>
           <View className="text-center">
-            <Text className="text-20 font-bold text-green-600 block mb-4">
+            <Text className="text-20 font-bold block mb-4"
+              style={{ color: themeColors.primary }}
+            >
               Lv.{userInfo.level}
             </Text>
             <Text className="text-12 text-gray-600">当前等级</Text>

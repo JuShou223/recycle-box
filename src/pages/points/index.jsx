@@ -5,8 +5,10 @@ import Tabs, { TabPane } from '../../components/Tabs'
 import Progress from '../../components/Progress'
 import Tag from '../../components/Tag'
 import Taro from '@tarojs/taro'
+import { useTheme } from '../../hooks/useTheme'
 
 function Points() {
+  const { themeColors } = useTheme()
   const [activeTab, setActiveTab] = useState('0')
   const [userPoints] = useState({
     total: 1250,
@@ -121,7 +123,10 @@ function Points() {
   return (
     <View className="min-h-screen bg-gray-50">
       {/* 积分概览 */}
-      <View className="m-20 rounded-20 bg-green-500 text-white p-20">
+      <View 
+        className="m-20 rounded-20 text-white p-20"
+        style={{ backgroundColor: themeColors.primary }}
+      >
         <View className="flex justify-between items-start mb-20">
           <View>
             <Text className="text-36 font-bold text-white block leading-none">{userPoints.total}</Text>
@@ -132,7 +137,7 @@ function Points() {
             <Progress 
               percentage={levelProgress}
               strokeWidth={6}
-              strokeColor='#52c41a'
+              strokeColor={themeColors.success}
               className="mb-4"
             />
             <Text className="text-12 text-green-100">
@@ -143,17 +148,18 @@ function Points() {
         
         <View className="flex justify-between items-center">
           <View className="text-center">
-            <Text className="text-18 font-bold text-white block mb-4">{userPoints.available}</Text>
-            <Text className="text-12 text-green-100">可用积分</Text>
+            <Text className="text-18 font-bold block mb-4" style={{ color: '#ffffff' }}>{userPoints.available}</Text>
+            <Text className="text-12" style={{ color: 'rgba(255,255,255,0.8)' }}>可用积分</Text>
           </View>
           <View className="text-center">
-            <Text className="text-18 font-bold text-white block mb-4">{userPoints.frozen}</Text>
-            <Text className="text-12 text-green-100">冻结积分</Text>
+            <Text className="text-18 font-bold block mb-4" style={{ color: '#ffffff' }}>{userPoints.frozen}</Text>
+            <Text className="text-12" style={{ color: 'rgba(255,255,255,0.8)' }}>冻结积分</Text>
           </View>
           <View className="text-center">
             <Button 
               size='small' 
-              className="bg-white text-green-600 px-12 py-4 rounded-full text-12 font-medium"
+              className="px-12 py-4 rounded-full text-12 font-medium"
+              style={{ backgroundColor: '#ffffff', color: themeColors.primary }}
               onClick={handleViewRanking}
             >
               查看排行
@@ -178,7 +184,8 @@ function Points() {
                 </View>
                 <View className="text-right">
                   <Text 
-                    className={`text-16 font-bold block mb-4 ${record.type === 'earn' ? 'text-green-600' : 'text-red-500'}`}
+                    className="text-16 font-bold block mb-4"
+                    style={{ color: record.type === 'earn' ? themeColors.success : themeColors.error }}
                   >
                     {record.type === 'earn' ? '+' : ''}{record.amount}
                   </Text>
@@ -204,7 +211,12 @@ function Points() {
                 />
                 <View className="p-12">
                   <Text className="text-12 font-bold text-gray-800 block mb-4 leading-tight">{item.name}</Text>
-                  <Text className="text-14 text-green-600 font-bold block mb-2">{item.points}积分</Text>
+                  <Text 
+                    className="text-14 font-bold block mb-2"
+                    style={{ color: themeColors.warning }}
+                  >
+                    {item.points}积分
+                  </Text>
                   <Text className="text-12 text-gray-600 block mb-8">库存: {item.stock}</Text>
                   <Button 
                     size='small'

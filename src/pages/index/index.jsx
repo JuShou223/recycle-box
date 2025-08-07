@@ -8,7 +8,7 @@ import Platform from "../../utils/platform";
 import { useTheme } from "../../hooks/useTheme";
 
 function Index() {
-  const { themeStyles } = useTheme();
+  const { themeColors, isH5 } = useTheme();
 
   const [userInfo, setUserInfo] = useState({
     nickname: "环保达人",
@@ -107,7 +107,10 @@ function Index() {
             <Text className="text-20 font-bold text-gray-800 mb-4">
               {userInfo.nickname}
             </Text>
-            <Text className="text-14 text-green-600 mb-8">
+            <Text 
+              className="text-14 mb-8"
+              style={{ color: themeColors.primary }}
+            >
               Lv.{userInfo.level} 环保达人
             </Text>
             <View className="flex gap-16">
@@ -129,19 +132,28 @@ function Index() {
         </Text>
         <View className="flex justify-around">
           <View className="text-center">
-            <Text className="text-24 font-bold text-green-600 block mb-4">
+            <Text 
+              className="text-24 font-bold block mb-4"
+              style={{ color: themeColors.primary }}
+            >
               {todayStats.recycled}
             </Text>
             <Text className="text-12 text-gray-600">回收次数</Text>
           </View>
           <View className="text-center">
-            <Text className="text-24 font-bold text-green-600 block mb-4">
+            <Text 
+              className="text-24 font-bold block mb-4"
+              style={{ color: themeColors.primary }}
+            >
               {todayStats.points}
             </Text>
             <Text className="text-12 text-gray-600">获得积分</Text>
           </View>
           <View className="text-center">
-            <Text className="text-24 font-bold text-green-600 block mb-4">
+            <Text 
+              className="text-24 font-bold block mb-4"
+              style={{ color: themeColors.primary }}
+            >
               {todayStats.co2Saved}kg
             </Text>
             <Text className="text-12 text-gray-600">减少碳排放</Text>
@@ -182,8 +194,17 @@ function Index() {
       </View>
 
       {/* 环保提示 */}
-      <View className="bg-yellow-50 rounded-20 p-20 border border-yellow-200">
-        <Text className="text-14 font-bold text-yellow-700 block mb-8">
+      <View 
+        className="rounded-20 p-20 border"
+        style={{ 
+          backgroundColor: themeColors.warningBg,
+          borderColor: themeColors.warning 
+        }}
+      >
+        <Text 
+          className="text-14 font-bold block mb-8"
+          style={{ color: themeColors.warning }}
+        >
           💡 环保小贴士
         </Text>
         <Text className="text-12 text-gray-600 leading-relaxed">
